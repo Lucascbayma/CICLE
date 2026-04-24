@@ -28,5 +28,4 @@ A arquitetura do CICLE foi desenhada para escalar com segurança e manter a alta
 
 ## 🔗 Links Úteis
 
-* [Site do Projeto (CESAR School)](https://sites.google.com/cesar.school/cicle/links?authuser=0)
-* [Repositório GitHub](https://github.com/Lucascbayma/CICLE)
+* [Site do Projeto](https://sites.google.com/cesar.school/cicle/início?authuser=0)
