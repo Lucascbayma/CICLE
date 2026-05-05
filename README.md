@@ -29,3 +29,7 @@ A arquitetura do CICLE foi desenhada para escalar com segurança e manter a alta
 ## 🔗 Links Úteis
 
 * [Site do Projeto](https://sites.google.com/cesar.school/cicle/início?authuser=0)
+* [Drive do Projeto](https://drive.google.com/drive/folders/1USE8G84A3lUxsHbWDaFw-DUGQ4UaJ7mp?usp=drive_link)
+* [Jira do Projeto](https://cesar-team-msvrz2pd.atlassian.net/jira/software/projects/KAN/boards/1)
+* [Miro do Projeto](https://miro.com/welcomeonboard/OWFMTllYdUJhbUlYNEZERUsrZlNBejBHNi91bDdGWXJ1OUw5SDRMVXozY09sd3R4RitWcW9KSXM5OXZtL0dyWXY4eTlkemdTTnhETGtDcloyditFNDErYk0xcDBTeTQrb0lFd0Q3ZzZGZ0xUUGUvSHo1SmVwVlpySk42U2JhV1NNakdSWkpBejJWRjJhRnhhb1UwcS9BPT0hdjE=?share_link_id=987047334334
+)
