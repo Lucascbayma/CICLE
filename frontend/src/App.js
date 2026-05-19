@@ -1,52 +1,62 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Leaf, TreePine, Award, Lock } from 'lucide-react';
+import React from 'react';
+import './App.css';
+import Aurora from './Aurora';
+import logoImg from './cicle.png';
 
 function App() {
-  const [progresso, setProgresso] = useState({
-    emissaoReduzida: 0,
-    meta: 100,
-    conquistas: []
-  });
+    return (
+        <div className="login-background">
+            <div className="aurora-wrapper">
+                <Aurora
+                    colorStops={["#72bca1","#1d5c42","#7ea488"]}
+                    blend={0.5}
+                    amplitude={1.0}
+                    speed={1}
+                />
+            </div>
 
-  useEffect(() => {
-    // Busca os dados do seu backend Spring Boot
-    axios.get('/api/gamificacao/status')
-        .then(res => setProgresso(res.data))
-        .catch(err => console.log("Aguardando API do Spring Boot..."));
-  }, []);
+            <div className="glass-container">
+                <div className="login-card">
+                    <div className="login-left">
+                        <img src={logoImg} alt="Logo Cicle" className="logo"/>
+                        <div className="left-content">
+                            <h2 className="left-title">Acompanhe sua jornada<br />de Co2 conosco!</h2>
+                            <p className="left-subtitle">acesse seus dados em tempo real</p>
+                        </div>
+                    </div>
 
-  return (
-      <div style={{ padding: '40px', backgroundColor: '#f0fdf4', minHeight: '100vh', fontFamily: 'sans-serif' }}>
-        <h1 style={{ color: '#166534' }}>🌿 Engajamento Ambiental</h1>
+                    <div className="login-right">
+                        <h2 className="right-title">Registre seu cartão</h2>
 
-        {/* Card de Progresso */}
-        <div style={{ background: '#fff', padding: '20px', borderRadius: '15px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', marginBottom: '30px' }}>
-          <h3>Sua Redução: {progresso.emissaoReduzida}kg de CO2</h3>
-          <div style={{ width: '100%', backgroundColor: '#e2e8f0', borderRadius: '10px', height: '20px' }}>
-            <div style={{
-              width: `${(progresso.emissaoReduzida / progresso.meta) * 100}%`,
-              backgroundColor: '#22c55e', height: '100%', borderRadius: '10px', transition: 'width 0.5s'
-            }} />
-          </div>
-          <p style={{ fontSize: '0.9rem', color: '#64748b', marginTop: '10px' }}>Meta para o próximo colecionável: {progresso.meta}kg</p>
+                        <form className="login-form">
+                            <div className="input-group">
+                                <label>nome/email</label>
+                                <input type="text" />
+                            </div>
+                            <div className="input-group">
+                                <label>senha</label>
+                                <input type="password" />
+                            </div>
+                            <div className="input-group">
+                                <label>cpf</label>
+                                <input type="text" placeholder="... ... ..." />
+                            </div>
+                            <div className="form-actions">
+                                <label className="checkbox-container">
+                                    <input type="checkbox" defaultChecked />
+                                    <span className="checkmark"></span>
+                                    lembrar
+                                </label>
+                                <a href="#esqueceu" className="forgot-password">esqueceu da senha?</a>
+                            </div>
+                            <button type="submit" className="login-button">Login</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
         </div>
-
-        {/* Grid de Colecionáveis */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '20px' }}>
-          {progresso.conquistas.map((item, index) => (
-              <div key={index} style={{
-                background: item.desbloqueado ? '#fff' : '#f8fafc',
-                padding: '20px', borderRadius: '12px', textAlign: 'center',
-                border: item.desbloqueado ? '2px solid #22c55e' : '2px solid #e2e8f0'
-              }}>
-                {item.desbloqueado ? <TreePine size={48} color="#22c55e" /> : <Lock size={48} color="#cbd5e1" />}
-                <p style={{ fontWeight: 'bold', marginTop: '10px' }}>{item.nome}</p>
-              </div>
-          ))}
-        </div>
-      </div>
-  );
+    );
 }
 
 export default App;
