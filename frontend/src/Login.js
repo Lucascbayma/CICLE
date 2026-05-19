@@ -47,7 +47,7 @@ function Login() {
                             </div>
                             <div className="input-group">
                                 <label>CPF</label>
-                                <input type="text" placeholder="... ... ..." />
+                                <input type="text" placeholder="123.456.789-01" />
                             </div>
                             <div className="form-actions">
                                 <a href="#esqueceu" className="forgot-password">Esqueceu sua senha?</a>
