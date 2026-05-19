@@ -21,7 +21,7 @@ function App() {
                         <img src={logoImg} alt="Logo Cicle" className="logo"/>
                         <div className="left-content">
                             <h2 className="left-title">Acompanhe sua jornada<br />de Co2 conosco!</h2>
-                            <p className="left-subtitle">acesse seus dados em tempo real</p>
+                            <p className="left-subtitle">Acesse seus dados em tempo real</p>
                         </div>
                     </div>
 
@@ -30,24 +30,19 @@ function App() {
 
                         <form className="login-form">
                             <div className="input-group">
-                                <label>nome/email</label>
+                                <label>Nome/Email</label>
                                 <input type="text" />
                             </div>
                             <div className="input-group">
-                                <label>senha</label>
+                                <label>Senha</label>
                                 <input type="password" />
                             </div>
                             <div className="input-group">
-                                <label>cpf</label>
+                                <label>CPF</label>
                                 <input type="text" placeholder="... ... ..." />
                             </div>
                             <div className="form-actions">
-                                <label className="checkbox-container">
-                                    <input type="checkbox" defaultChecked />
-                                    <span className="checkmark"></span>
-                                    lembrar
-                                </label>
-                                <a href="#esqueceu" className="forgot-password">esqueceu da senha?</a>
+                                <a href="#esqueceu" className="forgot-password">Esqueceu sua senha?</a>
                             </div>
                             <button type="submit" className="login-button">Login</button>
                         </form>
