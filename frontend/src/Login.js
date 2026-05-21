@@ -10,7 +10,11 @@ function Login() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        navigate('/calculadora');
+        if (tipoLogin === 'empresa') {
+            navigate('/calculadora');
+        } else {
+            navigate('/usuario');
+        }
     };
 
     return (
