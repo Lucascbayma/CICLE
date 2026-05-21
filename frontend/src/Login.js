@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
 import Aurora from './Aurora';
@@ -6,6 +6,7 @@ import logoImg from './cicle.png';
 
 function Login() {
     const navigate = useNavigate();
+    const [tipoLogin, setTipoLogin] = useState('usuario');
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -34,25 +35,52 @@ function Login() {
                     </div>
 
                     <div className="login-right">
-                        <h2 className="right-title">Registre seu cartão</h2>
+                        <div style={{ display: 'flex', width: '100%', marginBottom: '30px', backgroundColor: 'rgba(255, 255, 255, 0.1)', borderRadius: '8px', padding: '5px' }}>
+                            <button 
+                                type="button"
+                                onClick={() => setTipoLogin('usuario')}
+                                style={{ flex: 1, padding: '12px', border: 'none', borderRadius: '6px', backgroundColor: tipoLogin === 'usuario' ? '#72bca1' : 'transparent', color: tipoLogin === 'usuario' ? 'white' : '#a0a0a0', fontWeight: 'bold', cursor: 'pointer', transition: 'all 0.3s' }}
+                            >
+                                Para Você
+                            </button>
+                            <button 
+                                type="button"
+                                onClick={() => setTipoLogin('empresa')}
+                                style={{ flex: 1, padding: '12px', border: 'none', borderRadius: '6px', backgroundColor: tipoLogin === 'empresa' ? '#72bca1' : 'transparent', color: tipoLogin === 'empresa' ? 'white' : '#a0a0a0', fontWeight: 'bold', cursor: 'pointer', transition: 'all 0.3s' }}
+                            >
+                                Para Empresas
+                            </button>
+                        </div>
 
                         <form className="login-form" onSubmit={handleLogin}>
-                            <div className="input-group">
-                                <label>Nome/Email</label>
-                                <input type="text" />
-                            </div>
-                            <div className="input-group">
-                                <label>Senha</label>
-                                <input type="password" />
-                            </div>
-                            <div className="input-group">
-                                <label>CPF</label>
-                                <input type="text" placeholder="123.456.789-01" />
-                            </div>
+                            {tipoLogin === 'usuario' ? (
+                                <>
+                                    <div className="input-group">
+                                        <label>CPF</label>
+                                        <input type="text" placeholder="123.456.789-01" required />
+                                    </div>
+                                    <div className="input-group">
+                                        <label>Senha</label>
+                                        <input type="password" required />
+                                    </div>
+                                </>
+                            ) : (
+                                <>
+                                    <div className="input-group">
+                                        <label>Código da Empresa</label>
+                                        <input type="text" placeholder="Ex: EDENRED-1234" required />
+                                    </div>
+                                    <div className="input-group">
+                                        <label>Senha</label>
+                                        <input type="password" required />
+                                    </div>
+                                </>
+                            )}
+                            
                             <div className="form-actions">
                                 <a href="#esqueceu" className="forgot-password">Esqueceu sua senha?</a>
                             </div>
-                            <button type="submit" className="login-button">Login</button>
+                            <button type="submit" className="login-button">Entrar</button>
                         </form>
                     </div>
                 </div>
