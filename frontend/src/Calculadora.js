@@ -7,9 +7,11 @@ import logoImg from './cicle.png';
 function Calculadora() {
     const navigate = useNavigate();
     const [volume, setVolume] = useState(500000);
-    const [percentualDigital, setPercentualDigital] = useState(60);
+    const [percentualDigital, setPercentualDigital] = useState(87);
     const [percentualReciclado, setPercentualReciclado] = useState(20);
     const [resultado, setResultado] = useState(null);
+
+    const percentualFisico = 100 - percentualDigital;
 
     const calcularImpacto = async (e) => {
         e.preventDefault();
@@ -54,31 +56,45 @@ function Calculadora() {
                     <div style={{ flex: 1.2 }}>
                         <h2 style={{ color: 'white', marginBottom: '35px', fontSize: '32px' }}>Gestão de Carbono</h2>
                         <form className="login-form" onSubmit={calcularImpacto} style={{ width: '100%', margin: 0 }}>
-                            <div className="input-group" style={{ marginBottom: '30px' }}>
+                            <div className="input-group" style={{ marginBottom: '35px' }}>
                                 <label style={{ color: '#72bca1', fontWeight: 'bold', fontSize: '16px' }}>Volume Total de Transações (Anual)</label>
                                 <input type="number" value={volume} onChange={(e) => setVolume(Number(e.target.value))} style={{ fontSize: '18px' }} required />
                             </div>
 
-                            <div className="input-group" style={{ marginBottom: '30px' }}>
-                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <label style={{ color: '#72bca1', fontWeight: 'bold' }}>Mix Digital: {percentualDigital}%</label>
+                            <div style={{ marginBottom: '35px' }}>
+                                <div style={{ position: 'relative', height: '46px', borderRadius: '25px', backgroundColor: '#fdfdfd', display: 'flex', alignItems: 'center', marginBottom: '15px' }}>
+                                    <div style={{ position: 'absolute', top: 0, left: 0, height: '100%', width: `${percentualDigital}%`, backgroundColor: '#8ab493', borderRadius: '25px', transition: 'width 0.15s ease' }} />
+                                    <span style={{ position: 'absolute', left: '15px', color: percentualDigital > 15 ? 'white' : '#8ab493', fontWeight: 'bold', fontSize: '20px', zIndex: 2, transition: 'color 0.15s ease' }}>{percentualDigital}%</span>
+                                    <div style={{ position: 'absolute', left: `clamp(4px, calc(${percentualDigital}% - 18px), calc(100% - 40px))`, width: '36px', height: '36px', backgroundColor: 'white', borderRadius: '50%', border: '2px solid #8ab493', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 3, transition: 'left 0.15s ease' }}>
+                                        <span style={{ color: '#8ab493', fontSize: '18px' }}>📱</span>
+                                    </div>
+                                    <span style={{ position: 'absolute', right: '15px', color: '#8ab493', fontWeight: 'bold', fontSize: '14px', zIndex: 1 }}>Uso Digital</span>
+                                    <input type="range" min="0" max="100" value={percentualDigital} onChange={(e) => setPercentualDigital(Number(e.target.value))} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0, cursor: 'pointer', zIndex: 4 }} />
                                 </div>
-                                <input type="range" min="0" max="100" value={percentualDigital} onChange={(e) => setPercentualDigital(Number(e.target.value))} style={{ width: '100%', margin: '15px 0', padding: 0, accentColor: '#72bca1', display: 'block' }} />
-                                <div style={{ display: 'flex', justifyContent: 'space-between', color: 'rgba(255,255,255,0.6)', fontSize: '12px' }}>
-                                    <span>Físico (Cartão)</span>
-                                    <span>Digital (App/NFC)</span>
+
+                                <div style={{ position: 'relative', height: '46px', borderRadius: '25px', backgroundColor: '#fdfdfd', display: 'flex', alignItems: 'center' }}>
+                                    <div style={{ position: 'absolute', top: 0, left: 0, height: '100%', width: `${percentualFisico}%`, backgroundColor: '#ff6347', borderRadius: '25px', transition: 'width 0.15s ease' }} />
+                                    <span style={{ position: 'absolute', left: '15px', color: percentualFisico > 15 ? 'white' : '#ff6347', fontWeight: 'bold', fontSize: '20px', zIndex: 2, transition: 'color 0.15s ease' }}>{percentualFisico}%</span>
+                                    <div style={{ position: 'absolute', left: `clamp(4px, calc(${percentualFisico}% - 18px), calc(100% - 40px))`, width: '36px', height: '36px', backgroundColor: 'white', borderRadius: '50%', border: '2px solid #ff6347', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 3, transition: 'left 0.15s ease' }}>
+                                        <span style={{ color: '#ff6347', fontSize: '18px' }}>💳</span>
+                                    </div>
+                                    <span style={{ position: 'absolute', right: '15px', color: '#ff6347', fontWeight: 'bold', fontSize: '14px', zIndex: 1 }}>Uso Físico</span>
+                                    <input type="range" min="0" max="100" value={percentualFisico} onChange={(e) => setPercentualDigital(100 - Number(e.target.value))} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0, cursor: 'pointer', zIndex: 4 }} />
                                 </div>
                             </div>
 
-                            <div className="input-group" style={{ marginBottom: '30px' }}>
+                            <div className="input-group" style={{ marginBottom: '30px', opacity: percentualDigital === 100 ? 0.3 : 1, pointerEvents: percentualDigital === 100 ? 'none' : 'auto', transition: 'opacity 0.3s' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <label style={{ color: '#72bca1', fontWeight: 'bold' }}>Cartões Sustentáveis (Reciclado): {percentualReciclado}%</label>
                                 </div>
-                                <input type="range" min="0" max="100" value={percentualReciclado} onChange={(e) => setPercentualReciclado(Number(e.target.value))} style={{ width: '100%', margin: '15px 0', padding: 0, accentColor: '#72bca1', display: 'block' }} />
+                                <input type="range" min="0" max="100" value={percentualReciclado} onChange={(e) => setPercentualReciclado(Number(e.target.value))} style={{ width: '100%', margin: '15px 0', padding: 0, accentColor: '#72bca1', display: 'block' }} disabled={percentualDigital === 100} />
                                 <div style={{ display: 'flex', justifyContent: 'space-between', color: 'rgba(255,255,255,0.6)', fontSize: '12px' }}>
                                     <span>PVC Padrão</span>
                                     <span>PVC Reciclado</span>
                                 </div>
+                                {percentualDigital === 100 && (
+                                    <span style={{ color: '#ff6b6b', fontSize: '13px', marginTop: '10px', display: 'block', fontWeight: 'bold' }}>Bloqueado: Uso Digital está em 100%</span>
+                                )}
                             </div>
 
                             <button type="submit" className="login-button" style={{ marginTop: '10px', height: '60px', fontSize: '18px' }}>Simular Resultados ESG</button>
