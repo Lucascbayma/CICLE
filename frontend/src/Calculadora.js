@@ -46,7 +46,7 @@ function Calculadora() {
                         <h2 style={{ color: 'white', fontSize: '24px', fontWeight: 'bold', margin: '0 0 10px 0' }}>Painel ESG</h2>
                         <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '14px', lineHeight: '1.4' }}>Simulação baseada em premissas técnicas Edenred</p>
                     </div>
-                    <button onClick={() => navigate('/')} className="login-button" style={{ backgroundColor: '#ff6b6b', width: '100%', border: 'none' }}>Sair do Sistema</button>
+                    <button onClick={() => navigate('/empresa')} className="login-button" style={{ backgroundColor: '#ff6b6b', width: '100%', border: 'none' }}>Voltar para a Empresa</button>
                 </div>
 
                 <div style={{ flex: 1, padding: '40px', backgroundColor: 'rgba(255, 255, 255, 0.05)', display: 'flex', gap: '40px', overflowY: 'auto' }}>
