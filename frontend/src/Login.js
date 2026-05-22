@@ -61,22 +61,22 @@ function Login() {
                                 <>
                                     <div className="input-group">
                                         <label>CPF</label>
-                                        <input type="text" placeholder="123.456.789-01" required />
+                                        <input type="text" placeholder="123.456.789-01" />
                                     </div>
                                     <div className="input-group">
                                         <label>Senha</label>
-                                        <input type="password" required />
+                                        <input type="password" />
                                     </div>
                                 </>
                             ) : (
                                 <>
                                     <div className="input-group">
                                         <label>Código da Empresa</label>
-                                        <input type="text" placeholder="Ex: EDENRED-1234" required />
+                                        <input type="text" placeholder="Ex: EDENRED-1234" />
                                     </div>
                                     <div className="input-group">
                                         <label>Senha</label>
-                                        <input type="password" required />
+                                        <input type="password" />
                                     </div>
                                 </>
                             )}
