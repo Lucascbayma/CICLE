@@ -112,7 +112,7 @@ function Usuario() {
                         <p style={{ color: 'rgba(255,255,255,0.7)', margin: 0, lineHeight: '1.5' }}>Defina seu limite mensal de carbono e acompanhe seu progresso em tempo real.</p>
                     </div>
 
-                    <div style={{ backgroundColor: '#112a1f', padding: '30px', borderRadius: '15px', border: '1px solid #1d5c42', cursor: 'pointer', transition: 'transform 0.2s' }}>
+                    <div onClick={() => navigate('/gamificacao')} style={{ backgroundColor: '#112a1f', padding: '30px', borderRadius: '15px', border: '1px solid #1d5c42', cursor: 'pointer', transition: 'transform 0.2s', boxShadow: '0 4px 15px rgba(114, 188, 161, 0.2)' }}>
                         <div style={{ fontSize: '40px', marginBottom: '15px' }}>🏆</div>
                         <h3 style={{ color: '#72bca1', margin: '0 0 10px 0' }}>Gamificação</h3>
                         <p style={{ color: 'rgba(255,255,255,0.7)', margin: 0, lineHeight: '1.5' }}>Desbloqueie conquistas e figuras ambientais ao realizar escolhas ecológicas.</p>
