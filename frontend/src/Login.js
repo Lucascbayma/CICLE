@@ -11,7 +11,7 @@ function Login() {
     const handleLogin = (e) => {
         e.preventDefault();
         if (tipoLogin === 'empresa') {
-            navigate('/calculadora');
+            navigate('/empresa');
         } else {
             navigate('/usuario');
         }
