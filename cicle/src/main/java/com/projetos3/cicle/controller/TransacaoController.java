@@ -8,11 +8,13 @@ import com.projetos3.cicle.repository.UsuarioRepository;
 import com.projetos3.cicle.service.CarbonService;
 import com.projetos3.cicle.service.CashbackService;
 import com.projetos3.cicle.service.GamificacaoService;
+import com.projetos3.cicle.service.MetaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +26,7 @@ public class TransacaoController {
     @Autowired CarbonService carbonService;
     @Autowired CashbackService cashbackService;
     @Autowired GamificacaoService gamificacaoService;
+    @Autowired MetaService metaService;
     @Autowired TransacaoRepository transacaoRepo;
     @Autowired UsuarioRepository usuarioRepo;
 
@@ -53,14 +56,21 @@ public class TransacaoController {
         // Atualiza gamificação
         Progresso progresso = gamificacaoService.atualizarProgresso(dto.getUsuarioId(), economia);
 
-        return ResponseEntity.ok(Map.of(
-                "emissao_co2",  emissao,
-                "economia_co2", economia,
-                "cashback",     cashback,
-                "pontos",       progresso.getPontos(),
-                "nivel",        progresso.getNivel(),
-                "pecas",        progresso.getPecasDesbloqueadas()
-        ));
+        // Atualiza emissão da meta mensal e coleta progresso
+        metaService.atualizarEmissao(dto.getUsuarioId(), emissao);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("emissao_co2",  emissao);
+        response.put("economia_co2", economia);
+        response.put("cashback",     cashback);
+        response.put("pontos",       progresso.getPontos());
+        response.put("nivel",        progresso.getNivel());
+        response.put("pecas",        progresso.getPecasDesbloqueadas());
+
+        metaService.getProgressoAtual(dto.getUsuarioId())
+                .ifPresent(meta -> response.put("meta", meta));
+
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/usuario/{id}")
