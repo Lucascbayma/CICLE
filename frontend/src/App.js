@@ -5,6 +5,7 @@ import Calculadora from './Calculadora';
 import Usuario from './Usuario';
 import Empresa from './Empresa';
 import Gamificacao from './Gamificacao';
+import Metas from './Metas';
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                 <Route path="/usuario" element={<Usuario />} />
                 <Route path="/empresa" element={<Empresa />} />
                 <Route path="/gamificacao" element={<Gamificacao />} />
+                <Route path="/metas" element={<Metas />} />
             </Routes>
         </Router>
     );

@@ -106,7 +106,7 @@ function Usuario() {
                 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '30px' }}>
                     
-                    <div style={{ backgroundColor: '#112a1f', padding: '30px', borderRadius: '15px', border: '1px solid #1d5c42', cursor: 'pointer', transition: 'transform 0.2s' }}>
+                    <div onClick={() => navigate('/metas')} style={{ backgroundColor: '#112a1f', padding: '30px', borderRadius: '15px', border: '1px solid #1d5c42', cursor: 'pointer', transition: 'transform 0.2s', boxShadow: '0 4px 15px rgba(114, 188, 161, 0.2)' }}>
                         <div style={{ fontSize: '40px', marginBottom: '15px' }}>🎯</div>
                         <h3 style={{ color: '#72bca1', margin: '0 0 10px 0' }}>Metas de Emissão</h3>
                         <p style={{ color: 'rgba(255,255,255,0.7)', margin: 0, lineHeight: '1.5' }}>Defina seu limite mensal de carbono e acompanhe seu progresso em tempo real.</p>
