@@ -4,7 +4,7 @@ import './App.css';
 import Aurora from './Aurora';
 import logoImg from './cicle.png';
 
-// Credenciais válidas hardcoded (sem banco/backend)
+// LOGIN E SENHA ACEITAVEIS
 const CREDENCIAIS = {
     usuario: { login: '123.456.789-01', senha: 'senha123' },
     empresa: { login: 'EDENRED-1234', senha: 'empresa123' },
