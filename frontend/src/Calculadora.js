@@ -138,7 +138,7 @@ function Calculadora() {
                                     <p style={{ opacity: 0.7, fontSize: '14px', margin: '0 0 8px 0' }}>Referência (100% Físico Padrão)</p>
                                     <p style={{ fontSize: '22px', margin: 0, opacity: 0.9 }}>{resultado.emissoesCenario100Fisico.toFixed(2)} kg CO2e</p>
                                 </div>
-                                <div style={{ padding: '30px', background: 'linear-gradient(135deg, rgba(114, 188, 161, 0.35) 0%, rgba(29, 92, 66, 0.35) 100%)', borderRadius: '20px', border: '1px solid #72bca1', boxShadow: '0 10px 30px rgba(0,0,0,0.3)' }}>
+                                <div style={{ padding: '10px', background: 'linear-gradient(135deg, rgba(114, 188, 161, 0.35) 0%, rgba(29, 92, 66, 0.35) 100%)', borderRadius: '20px', border: '1px solid #72bca1', boxShadow: '0 10px 30px rgba(0,0,0,0.3)' }}>
                                     <p style={{ color: '#72bca1', fontWeight: 'bold', fontSize: '14px', margin: '0 0 12px 0', textTransform: 'uppercase', letterSpacing: '1px' }}>Total Economizado</p>
                                     <p style={{ fontSize: '56px', fontWeight: 'bold', margin: '0 0 15px 0', color: '#72bca1', lineHeight: '1' }}>{resultado.carbonoEconomizado.toFixed(1)}</p>
                                     <p style={{ fontSize: '20px', display: 'flex', alignItems: 'center', gap: '15px', margin: 0, color: '#ffffff' }}>
