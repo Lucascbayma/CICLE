@@ -129,7 +129,7 @@ function Empresa() {
                         <p style={{ color: 'rgba(255,255,255,0.7)', margin: 0, lineHeight: '1.5' }}>Compare a performance ESG da sua empresa com outras do mesmo setor em nossa rede.</p>
                     </div>
 
-                    <div style={{ backgroundColor: '#112a1f', padding: '30px', borderRadius: '15px', border: '1px solid #1d5c42', opacity: '0.8' }}>
+                    <div onClick={() => navigate('/historico')} style={{ backgroundColor: '#112a1f', padding: '30px', borderRadius: '15px', border: '1px solid #72bca1', cursor: 'pointer', transition: 'transform 0.2s', boxShadow: '0 4px 15px rgba(114, 188, 161, 0.2)' }}>
                         <div style={{ fontSize: '40px', marginBottom: '15px' }}>📈</div>
                         <h3 style={{ color: '#72bca1', margin: '0 0 10px 0' }}>Histórico e Evolução</h3>
                         <p style={{ color: 'rgba(255,255,255,0.7)', margin: 0, lineHeight: '1.5' }}>Analise os gráficos dos seus resultados passados e acompanhe a melhoria contínua da sua pegada de carbono.</p>

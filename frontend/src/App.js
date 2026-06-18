@@ -5,7 +5,8 @@ import Calculadora from './Calculadora';
 import Usuario from './Usuario';
 import Empresa from './Empresa';
 import Gamificacao from './Gamificacao';
-import Floresta from './Floresta'; // Adicione a importação
+import Floresta from './Floresta';
+import Historico from './Historico';
 
 function App() {
     return (
@@ -16,7 +17,8 @@ function App() {
                 <Route path="/usuario" element={<Usuario />} />
                 <Route path="/empresa" element={<Empresa />} />
                 <Route path="/gamificacao" element={<Gamificacao />} />
-                <Route path="/floresta" element={<Floresta />} /> {/* Adicione a rota */}
+                <Route path="/floresta" element={<Floresta />} />
+                <Route path="/historico" element={<Historico />} />
             </Routes>
         </Router>
     );
