@@ -135,10 +135,11 @@ function Empresa() {
                         <p style={{ color: 'rgba(255,255,255,0.7)', margin: 0, lineHeight: '1.5' }}>Analise os gráficos dos seus resultados passados e acompanhe a melhoria contínua da sua pegada de carbono.</p>
                     </div>
 
-                    <div style={{ backgroundColor: '#112a1f', padding: '30px', borderRadius: '15px', border: '1px solid #1d5c42', opacity: '0.8' }}>
+                    <div onClick={() => navigate('/floresta')} style={{ backgroundColor: '#112a1f', padding: '30px', borderRadius: '15px', border: '1px solid #72bca1', cursor: 'pointer', transition: 'transform 0.2s', boxShadow: '0 4px 15px rgba(114, 188, 161, 0.2)' }}>
                         <div style={{ fontSize: '40px', marginBottom: '15px' }}>🌳</div>
                         <h3 style={{ color: '#72bca1', margin: '0 0 10px 0' }}>Floresta Corporativa</h3>
-                        <p style={{ color: 'rgba(255,255,255,0.7)', margin: 0, lineHeight: '1.5' }}>Visualize o volume total de árvores preservadas em decorrência da sua economia de carbono.</p>
+                        <p style={{ color: 'rgba(255,255,255,0.7)', margin: '0 0 15px 0', lineHeight: '1.5' }}>Você preservou <strong style={{color: 'white'}}>1.240</strong> árvores este mês decorrentes da sua economia.</p>
+                        <span style={{ backgroundColor: 'rgba(114, 188, 161, 0.2)', color: '#72bca1', padding: '6px 12px', borderRadius: '20px', fontSize: '13px', fontWeight: 'bold' }}>↑ 15% vs mês anterior</span>
                     </div>
 
                 </div>
