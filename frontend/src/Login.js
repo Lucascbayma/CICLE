@@ -4,16 +4,42 @@ import './App.css';
 import Aurora from './Aurora';
 import logoImg from './cicle.png';
 
+// Credenciais válidas hardcoded (sem banco/backend)
+const CREDENCIAIS = {
+    usuario: { login: '123.456.789-01', senha: 'senha123' },
+    empresa: { login: 'EDENRED-1234', senha: 'empresa123' },
+};
+
 function Login() {
     const navigate = useNavigate();
     const [tipoLogin, setTipoLogin] = useState('usuario');
+    const [loginInput, setLoginInput] = useState('');
+    const [senhaInput, setSenhaInput] = useState('');
+    const [erro, setErro] = useState('');
+
+    const trocarTipo = (tipo) => {
+        setTipoLogin(tipo);
+        setLoginInput('');
+        setSenhaInput('');
+        setErro('');
+    };
 
     const handleLogin = (e) => {
         e.preventDefault();
-        if (tipoLogin === 'empresa') {
-            navigate('/empresa');
+        const credenciais = CREDENCIAIS[tipoLogin];
+        if (loginInput === credenciais.login && senhaInput === credenciais.senha) {
+            setErro('');
+            if (tipoLogin === 'empresa') {
+                navigate('/empresa');
+            } else {
+                navigate('/usuario');
+            }
         } else {
-            navigate('/usuario');
+            setErro(
+                tipoLogin === 'empresa'
+                    ? 'Código da empresa ou senha inválidos.'
+                    : 'CPF ou senha inválidos.'
+            );
         }
     };
 
@@ -42,14 +68,14 @@ function Login() {
                         <div style={{ display: 'flex', width: '100%', marginBottom: '30px', backgroundColor: 'rgba(255, 255, 255, 0.1)', borderRadius: '8px', padding: '5px' }}>
                             <button 
                                 type="button"
-                                onClick={() => setTipoLogin('usuario')}
+                                onClick={() => trocarTipo('usuario')}
                                 style={{ flex: 1, padding: '12px', border: 'none', borderRadius: '6px', backgroundColor: tipoLogin === 'usuario' ? '#72bca1' : 'transparent', color: tipoLogin === 'usuario' ? 'white' : '#a0a0a0', fontWeight: 'bold', cursor: 'pointer', transition: 'all 0.3s' }}
                             >
                                 Para Você
                             </button>
                             <button 
                                 type="button"
-                                onClick={() => setTipoLogin('empresa')}
+                                onClick={() => trocarTipo('empresa')}
                                 style={{ flex: 1, padding: '12px', border: 'none', borderRadius: '6px', backgroundColor: tipoLogin === 'empresa' ? '#72bca1' : 'transparent', color: tipoLogin === 'empresa' ? 'white' : '#a0a0a0', fontWeight: 'bold', cursor: 'pointer', transition: 'all 0.3s' }}
                             >
                                 Para Empresas
@@ -61,30 +87,53 @@ function Login() {
                                 <>
                                     <div className="input-group">
                                         <label>CPF</label>
-                                        <input type="text" placeholder="123.456.789-01" />
+                                        <input
+                                            type="text"
+                                            placeholder="123.456.789-01"
+                                            value={loginInput}
+                                            onChange={(e) => setLoginInput(e.target.value)}
+                                        />
                                     </div>
                                     <div className="input-group">
                                         <label>Senha</label>
-                                        <input type="password" />
+                                        <input
+                                            type="password"
+                                            value={senhaInput}
+                                            onChange={(e) => setSenhaInput(e.target.value)}
+                                        />
                                     </div>
                                 </>
                             ) : (
                                 <>
                                     <div className="input-group">
                                         <label>Código da Empresa</label>
-                                        <input type="text" placeholder="Ex: EDENRED-1234" />
+                                        <input
+                                            type="text"
+                                            placeholder="Ex: EDENRED-1234"
+                                            value={loginInput}
+                                            onChange={(e) => setLoginInput(e.target.value)}
+                                        />
                                     </div>
                                     <div className="input-group">
                                         <label>Senha</label>
-                                        <input type="password" />
+                                        <input
+                                            type="password"
+                                            value={senhaInput}
+                                            onChange={(e) => setSenhaInput(e.target.value)}
+                                        />
                                     </div>
                                 </>
                             )}
-                            
+
                             <div className="form-actions">
                                 <a href="#esqueceu" className="forgot-password">Esqueceu sua senha?</a>
                             </div>
                             <button type="submit" className="login-button">Entrar</button>
+                            {erro && (
+                                <p style={{ color: 'red', marginTop: '15px', textAlign: 'center' }}>
+                                    {erro}
+                                </p>
+                            )}
                         </form>
                     </div>
                 </div>
