@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserCircle } from 'lucide-react';
 import './App.css';
 import Aurora from './Aurora';
 import logoImg from './cicle.png';
@@ -34,8 +35,22 @@ function Calculadora() {
     };
 
     return (
-        <div className="login-background" style={{ height: '100vh', width: '100vw', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingLeft: '60px', boxSizing: 'border-box' }}>
+        <div className="login-background" style={{ height: '100vh', width: '100vw', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingLeft: '60px', paddingTop: '64px', boxSizing: 'border-box' }}>
             <SidebarMenu />
+
+            <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 40px', height: '64px', backgroundColor: 'rgba(0,0,0,0.6)', position: 'fixed', left: '60px', right: 0, top: 0, zIndex: 100, boxSizing: 'border-box', backdropFilter: 'blur(10px)' }}>
+                <img src={logoImg} alt="Cicle Logo" style={{ height: '36px' }} />
+
+                <h1 style={{ color: 'white', fontSize: '20px', fontWeight: '700', margin: 0, position: 'absolute', left: '50%', transform: 'translateX(-50%)', whiteSpace: 'nowrap' }}>
+                    Calculadora Ambiental
+                </h1>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', backgroundColor: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.18)', borderRadius: '999px', padding: '7px 14px 7px 12px' }}>
+                    <span style={{ color: 'white', fontSize: '14px', fontWeight: '500', whiteSpace: 'nowrap' }}>Olá, Empresa!</span>
+                    <UserCircle size={22} color="rgba(255,255,255,0.75)" strokeWidth={1.6} />
+                </div>
+            </header>
+
             <div className="aurora-wrapper">
                 <Aurora colorStops={["#72bca1","#1d5c42","#7ea488"]} blend={0.5} amplitude={1.0} speed={1} />
             </div>

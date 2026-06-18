@@ -12,7 +12,7 @@ function SidebarMenu() {
 
     const navItems = [
         { Icon: LineChart,   label: 'Análise',     path: '/usuario' },
-        { Icon: Calculator,  label: 'Calculadora', path: '/calculadora' },
+        { Icon: Calculator,  label: 'Calculadora', path: '/calculadora-ambiental' },
         { Icon: LayoutGrid,  label: 'Gamificação', path: '/gamificacao' },
     ];
 
