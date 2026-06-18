@@ -4,7 +4,6 @@ import { UserCircle } from 'lucide-react';
 import './App.css';
 import Aurora from './Aurora';
 import logoImg from './cicle.png';
-import SidebarMenu from './SidebarMenu';
 
 function Calculadora() {
     const navigate = useNavigate();
@@ -35,10 +34,9 @@ function Calculadora() {
     };
 
     return (
-        <div className="login-background" style={{ height: '100vh', width: '100vw', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingLeft: '60px', paddingTop: '64px', boxSizing: 'border-box' }}>
-            <SidebarMenu />
-
-            <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 40px', height: '64px', backgroundColor: 'rgba(0,0,0,0.6)', position: 'fixed', left: '60px', right: 0, top: 0, zIndex: 100, boxSizing: 'border-box', backdropFilter: 'blur(10px)' }}>
+        <div className="login-background" style={{ height: '100vh', width: '100vw', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '64px', boxSizing: 'border-box' }}>
+            
+            <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 40px', height: '64px', backgroundColor: 'rgba(0,0,0,0.6)', position: 'fixed', left: 0, right: 0, top: 0, zIndex: 100, boxSizing: 'border-box', backdropFilter: 'blur(10px)' }}>
                 <img src={logoImg} alt="Cicle Logo" style={{ height: '36px' }} />
 
                 <h1 style={{ color: 'white', fontSize: '20px', fontWeight: '700', margin: 0, position: 'absolute', left: '50%', transform: 'translateX(-50%)', whiteSpace: 'nowrap' }}>
