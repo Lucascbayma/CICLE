@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserCircle } from 'lucide-react';
 import './App.css';
 import logoImg from './cicle.png';
 import SidebarMenu from './SidebarMenu';
@@ -62,10 +63,16 @@ function Usuario() {
         <div style={{ backgroundColor: '#0a1912', minHeight: '100vh', width: '100%', fontFamily: 'sans-serif', paddingLeft: '60px', boxSizing: 'border-box' }}>
             <SidebarMenu />
 
-            <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 40px', backgroundColor: 'rgba(0,0,0,0.5)', position: 'fixed', left: '60px', right: 0, top: 0, zIndex: 100, boxSizing: 'border-box', backdropFilter: 'blur(10px)' }}>
-                <img src={logoImg} alt="Cicle Logo" style={{ height: '40px' }} />
-                <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                    <span style={{ color: 'white', fontWeight: 'bold' }}>Olá, Usuário</span>
+            <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 40px', height: '64px', backgroundColor: 'rgba(0,0,0,0.5)', position: 'fixed', left: '60px', right: 0, top: 0, zIndex: 100, boxSizing: 'border-box', backdropFilter: 'blur(10px)' }}>
+                <img src={logoImg} alt="Cicle Logo" style={{ height: '36px' }} />
+
+                <h1 style={{ color: 'white', fontSize: '22px', fontWeight: '700', margin: 0, position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
+                    Análise
+                </h1>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', backgroundColor: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.18)', borderRadius: '999px', padding: '7px 14px 7px 12px' }}>
+                    <span style={{ color: 'white', fontSize: '14px', fontWeight: '500', whiteSpace: 'nowrap' }}>Olá, Usuário!</span>
+                    <UserCircle size={22} color="rgba(255,255,255,0.75)" strokeWidth={1.6} />
                 </div>
             </header>
 
@@ -103,7 +110,7 @@ function Usuario() {
             </section>
 
             <section style={{ padding: '60px 10%', maxWidth: '1200px', margin: '0 auto' }}>
-                <h2 style={{ color: 'white', fontSize: '28px', marginBottom: '30px' }}>Minha Jornada CICLE</h2>
+                <h2 style={{ color: 'white', fontSize: '28px', marginBottom: '30px' }}>Análise</h2>
                 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '30px' }}>
                     
