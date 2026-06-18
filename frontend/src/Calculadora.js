@@ -14,23 +14,33 @@ function Calculadora() {
 
     const percentualFisico = 100 - percentualDigital;
 
-    const calcularImpacto = async (e) => {
+    const calcularImpacto = (e) => {
         e.preventDefault();
-        try {
-            const response = await fetch('http://localhost:8080/api/calculadora/simular', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    volumeTransacoes: volume,
-                    percentualDigital: percentualDigital,
-                    percentualReciclado: percentualReciclado
-                })
-            });
-            const data = await response.json();
-            setResultado(data);
-        } catch (error) {
-            console.error(error);
-        }
+        
+        const percDigital = percentualDigital / 100.0;
+        const percReciclado = percentualReciclado / 100.0;
+
+        const volDigital = volume * percDigital;
+        const volFisico = volume - volDigital;
+        const volReciclado = volFisico * percReciclado;
+        const volPadrao = volFisico - volReciclado;
+
+        const emissoesDigital = volDigital * 3.15;
+        const emissoesReciclado = volReciclado * 9.0;
+        const emissoesPadrao = volPadrao * 21.0;
+
+        const emissoesAtualKg = (emissoesDigital + emissoesReciclado + emissoesPadrao) / 1000.0;
+        const emissoes100FisicoKg = (volume * 21.0) / 1000.0;
+        const economiaKg = emissoes100FisicoKg - emissoesAtualKg;
+
+        const arvores = Math.floor(economiaKg / 10.0);
+
+        setResultado({
+            emissoesCenarioAtual: emissoesAtualKg,
+            emissoesCenario100Fisico: emissoes100FisicoKg,
+            carbonoEconomizado: economiaKg,
+            arvoresSalvas: arvores
+        });
     };
 
     return (
