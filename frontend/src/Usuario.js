@@ -1,146 +1,220 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { UserCircle } from 'lucide-react';
 import './App.css';
 import logoImg from './cicle.png';
 import SidebarMenu from './SidebarMenu';
 
-function Usuario() {
-    const navigate = useNavigate();
-    const [currentSlide, setCurrentSlide] = useState(0);
+const API     = 'http://localhost:8080';
+const USER_ID = 1;
 
-    const slides = [
-        {
-            id: 1,
-            tag: "MEIOS DE PAGAMENTO",
-            title: "O poder da sua Wallet",
-            description: "Pagar com o celular (NFC) ou Pix emite até 85% menos CO2e do que o processo de fabricação, logística e uso de um cartão de plástico comum. Uma escolha simples com impacto gigante.",
-            metric: "-85%",
-            metricLabel: "Emissões de CO2e",
-            bgGradient: "linear-gradient(135deg, rgba(29, 92, 66, 0.9) 0%, rgba(11, 46, 31, 0.9) 100%)",
-            icon: "📱"
-        },
-        {
-            id: 2,
-            tag: "MOBILIDADE URBANA",
-            title: "Menos trânsito, mais respiro",
-            description: "Trocar o carro particular pelo transporte público ou bicicleta apenas duas vezes na semana pode economizar até 300 kg de carbono por ano. O planeta agradece.",
-            metric: "300 kg",
-            metricLabel: "Poupados por ano",
-            bgGradient: "linear-gradient(135deg, rgba(114, 188, 161, 0.9) 0%, rgba(29, 92, 66, 0.9) 100%)",
-            icon: "🚲"
-        },
-        {
-            id: 3,
-            tag: "CONSUMO CONSCIENTE",
-            title: "Faturas e Recibos Digitais",
-            description: "A cada 10 recibos de papel evitados, economizamos água, madeira e reduzimos emissões do transporte de correspondências. Ative suas notificações 100% digitais.",
-            metric: "100%",
-            metricLabel: "Sustentável",
-            bgGradient: "linear-gradient(135deg, rgba(126, 164, 136, 0.9) 0%, rgba(45, 84, 57, 0.9) 100%)",
-            icon: "🧾"
-        },
-        {
-            id: 4,
-            tag: "ALIMENTAÇÃO",
-            title: "Valorize o comércio local",
-            description: "Comprar alimentos produzidos perto de você reduz drasticamente as emissões causadas pelo transporte em caminhões e navios. Use seu benefício no bairro!",
-            metric: "-40%",
-            metricLabel: "Emissões logísticas",
-            bgGradient: "linear-gradient(135deg, rgba(46, 125, 93, 0.9) 0%, rgba(15, 61, 43, 0.9) 100%)",
-            icon: "🛒"
-        }
-    ];
+function Usuario() {
+    const [progresso, setProgresso] = useState(null);
+    const [loading,   setLoading]   = useState(true);
 
     useEffect(() => {
-        const timer = setInterval(() => {
-            setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-        }, 12000);
-        return () => clearInterval(timer);
-    }, [slides.length]);
+        fetch(`${API}/api/metas/usuario/${USER_ID}/progresso`)
+            .then(r => r.ok ? r.json() : null)
+            .then(data => { if (data) setProgresso(data); })
+            .catch(() => {})
+            .finally(() => setLoading(false));
+    }, []);
+
+    const emitido    = progresso?.emitido ?? 0;
+    const limite     = progresso?.limite  ?? 0;
+    const co2Evitado = Math.max(0, limite - emitido);
+
+    // SVG donut (benchmark estático)
+    const R    = 32;
+    const circ = 2 * Math.PI * R;
+    const dash = circ * 0.82;
+
+    const cardBase = {
+        backgroundColor: '#112a1f',
+        border: '1px solid #1a3828',
+        borderRadius: '14px',
+        padding: '22px',
+    };
 
     return (
-        <div style={{ backgroundColor: '#0a1912', minHeight: '100vh', width: '100%', fontFamily: 'sans-serif', paddingLeft: '60px', boxSizing: 'border-box' }}>
+        <div style={{
+            backgroundColor: '#0a1912', minHeight: '100vh',
+            fontFamily: 'sans-serif', paddingLeft: '60px', boxSizing: 'border-box',
+        }}>
             <SidebarMenu />
 
-            <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 40px', height: '64px', backgroundColor: 'rgba(0,0,0,0.5)', position: 'fixed', left: '60px', right: 0, top: 0, zIndex: 100, boxSizing: 'border-box', backdropFilter: 'blur(10px)' }}>
+            {/* Header fixo */}
+            <header style={{
+                display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                padding: '0 40px', height: '64px',
+                backgroundColor: 'rgba(0,0,0,0.5)', position: 'fixed',
+                left: '60px', right: 0, top: 0, zIndex: 100,
+                boxSizing: 'border-box', backdropFilter: 'blur(10px)',
+            }}>
                 <img src={logoImg} alt="Cicle Logo" style={{ height: '36px' }} />
-
-                <h1 style={{ color: 'white', fontSize: '22px', fontWeight: '700', margin: 0, position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
-                    Análise
-                </h1>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', backgroundColor: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.18)', borderRadius: '999px', padding: '7px 14px 7px 12px' }}>
-                    <span style={{ color: 'white', fontSize: '14px', fontWeight: '500', whiteSpace: 'nowrap' }}>Olá, Usuário!</span>
+                <div style={{
+                    display: 'flex', alignItems: 'center', gap: '10px',
+                    backgroundColor: 'rgba(255,255,255,0.08)',
+                    border: '1px solid rgba(255,255,255,0.18)',
+                    borderRadius: '999px', padding: '7px 14px 7px 12px',
+                }}>
+                    <span style={{ color: 'white', fontSize: '14px', fontWeight: '500', whiteSpace: 'nowrap' }}>
+                        Olá, Usuário!
+                    </span>
                     <UserCircle size={22} color="rgba(255,255,255,0.75)" strokeWidth={1.6} />
                 </div>
             </header>
 
-            <section style={{ position: 'relative', height: '70vh', width: '100%', overflow: 'hidden', marginTop: '0' }}>
-                {slides.map((slide, index) => (
-                    <div 
-                        key={slide.id} 
-                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: slide.bgGradient, opacity: index === currentSlide ? 1 : 0, transition: 'opacity 1s ease-in-out', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 10%', boxSizing: 'border-box' }}
-                    >
-                        <div style={{ display: 'flex', width: '100%', maxWidth: '1200px', justifyContent: 'space-between', alignItems: 'center', marginTop: '60px' }}>
-                            <div style={{ maxWidth: '600px' }}>
-                                <span style={{ backgroundColor: 'rgba(255,255,255,0.2)', color: '#fff', padding: '5px 15px', borderRadius: '20px', fontSize: '12px', fontWeight: 'bold', letterSpacing: '2px' }}>{slide.tag}</span>
-                                <h1 style={{ color: 'white', fontSize: '48px', margin: '20px 0', lineHeight: '1.2' }}>{slide.title}</h1>
-                                <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '18px', lineHeight: '1.6', marginBottom: '30px' }}>{slide.description}</p>
+            {/* Conteúdo principal */}
+            <div style={{ paddingTop: '64px', padding: '80px 40px 60px', maxWidth: '1100px' }}>
+
+                <h1 style={{ color: 'white', fontSize: '38px', fontWeight: '800', margin: '0 0 28px 0' }}>
+                    Análises
+                </h1>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', alignItems: 'start' }}>
+
+                    {/* ── Coluna esquerda ── */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+
+                        {/* CO2 */}
+                        <div style={cardBase}>
+                            <div style={{ paddingBottom: '16px', marginBottom: '16px', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                                    <div>
+                                        <p style={{ color: '#72bca1', fontSize: '30px', fontWeight: '800', margin: 0, lineHeight: 1 }}>
+                                            {loading ? '—' : `${co2Evitado.toFixed(0)}g`}
+                                        </p>
+                                        <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '13px', margin: '4px 0 0' }}>
+                                            CO2 evitado no período
+                                        </p>
+                                    </div>
+                                    <span style={{ color: '#72bca1', fontSize: '13px', fontWeight: '700' }}>↑12.5%</span>
+                                </div>
                             </div>
-                            
-                            <div style={{ backgroundColor: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', padding: '40px', borderRadius: '20px', textAlign: 'center', width: '250px', backdropFilter: 'blur(10px)' }}>
-                                <div style={{ fontSize: '60px', marginBottom: '10px' }}>{slide.icon}</div>
-                                <h2 style={{ color: '#72bca1', fontSize: '42px', margin: '0' }}>{slide.metric}</h2>
-                                <p style={{ color: 'white', margin: '10px 0 0 0', fontSize: '14px', textTransform: 'uppercase' }}>{slide.metricLabel}</p>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                                <div>
+                                    <p style={{ color: 'white', fontSize: '30px', fontWeight: '800', margin: 0, lineHeight: 1 }}>
+                                        {loading ? '—' : `${emitido.toFixed(0)}g`}
+                                    </p>
+                                    <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '13px', margin: '4px 0 0' }}>
+                                        Emissão Total de CO2
+                                    </p>
+                                </div>
+                                <span style={{ color: '#e75740', fontSize: '13px', fontWeight: '700' }}>↑8.3%</span>
+                            </div>
+                            {!progresso && !loading && (
+                                <p style={{ color: 'rgba(255,255,255,0.22)', fontSize: '11px', marginTop: '14px', marginBottom: 0, textAlign: 'center' }}>
+                                    Defina uma meta em Metas de Emissão para ver seus dados.
+                                </p>
+                            )}
+                        </div>
+
+                        {/* Digital vs Físico */}
+                        <div style={cardBase}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                                <h3 style={{ color: '#72bca1', margin: 0, fontSize: '15px', fontWeight: '700' }}>Digital vs Físico</h3>
+                                <span style={{ color: 'rgba(255,255,255,0.35)', fontSize: '12px' }}>Este mês ↓</span>
+                            </div>
+                            <p style={{ color: 'rgba(255,255,255,0.28)', fontSize: '12px', margin: '0 0 16px' }}>
+                                Das 6780 transações feitas
+                            </p>
+
+                            {/* Barra digital */}
+                            <div style={{ marginBottom: '12px' }}>
+                                <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '11px', margin: '0 0 5px' }}>5763 foram digitais</p>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                    <div style={{ flex: 1, backgroundColor: 'rgba(255,255,255,0.07)', borderRadius: '4px', height: '26px', overflow: 'hidden' }}>
+                                        <div style={{ width: '87%', height: '100%', backgroundColor: '#8ab493', borderRadius: '4px', display: 'flex', alignItems: 'center', paddingLeft: '10px' }}>
+                                            <span style={{ color: 'white', fontWeight: '700', fontSize: '13px' }}>87%</span>
+                                        </div>
+                                    </div>
+                                    <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: '12px', whiteSpace: 'nowrap' }}>Uso Digital</span>
+                                </div>
+                            </div>
+
+                            {/* Barra físico */}
+                            <div>
+                                <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '11px', margin: '0 0 5px' }}>1017 foram físicas</p>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                    <div style={{ flex: 1, backgroundColor: 'rgba(255,255,255,0.07)', borderRadius: '4px', height: '26px', overflow: 'hidden' }}>
+                                        <div style={{ width: '13%', height: '100%', backgroundColor: '#e75740', borderRadius: '4px', display: 'flex', alignItems: 'center', paddingLeft: '6px' }}>
+                                            <span style={{ color: 'white', fontWeight: '700', fontSize: '13px' }}>13%</span>
+                                        </div>
+                                    </div>
+                                    <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: '12px', whiteSpace: 'nowrap' }}>Uso Físico</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
 
-                <div style={{ position: 'absolute', bottom: '30px', width: '100%', display: 'flex', justifyContent: 'center', gap: '10px' }}>
-                    {slides.map((_, index) => (
-                        <div 
-                            key={index} 
-                            onClick={() => setCurrentSlide(index)}
-                            style={{ width: index === currentSlide ? '30px' : '10px', height: '10px', backgroundColor: index === currentSlide ? '#72bca1' : 'rgba(255,255,255,0.4)', borderRadius: '5px', cursor: 'pointer', transition: 'all 0.3s ease' }}
-                        />
-                    ))}
+                        {/* Cashback Verde — placeholder */}
+                        <div style={{ ...cardBase, backgroundColor: '#0d2218' }}>
+                            <h3 style={{ color: '#72bca1', margin: '0 0 14px', fontSize: '17px', fontWeight: '700' }}>
+                                Cashback Verde
+                            </h3>
+                            <div style={{ backgroundColor: 'rgba(114,188,161,0.08)', border: '1px solid rgba(114,188,161,0.2)', borderRadius: '10px', padding: '14px 16px', marginBottom: '12px' }}>
+                                <p style={{ color: 'rgba(255,255,255,0.35)', fontSize: '11px', margin: '0 0 4px' }}>Saldo Disponível</p>
+                                <p style={{ color: 'white', fontSize: '22px', fontWeight: '800', margin: 0 }}>Em breve</p>
+                            </div>
+                            <p style={{ color: 'rgba(255,255,255,0.2)', fontSize: '11px', margin: 0 }}>
+                                Backend de cashback em desenvolvimento.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    {/* ── Coluna direita ── */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+
+                        {/* Benchmark — estático */}
+                        <div style={cardBase}>
+                            <div style={{ marginBottom: '16px' }}>
+                                <h3 style={{ color: '#72bca1', margin: '0 0 2px', fontSize: '17px', fontWeight: '700' }}>Benchmark</h3>
+                                <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: '12px', margin: 0 }}>Sua posição no mercado</p>
+                            </div>
+
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
+                                {/* Donut SVG */}
+                                <svg width="86" height="86" viewBox="0 0 86 86" style={{ flexShrink: 0 }}>
+                                    <circle cx="43" cy="43" r={R} fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="9" />
+                                    <circle cx="43" cy="43" r={R} fill="none" stroke="#72bca1" strokeWidth="9"
+                                        strokeDasharray={`${dash} ${circ}`}
+                                        strokeLinecap="round"
+                                        transform="rotate(-90 43 43)" />
+                                    <text x="43" y="39" textAnchor="middle" fill="white" fontSize="8" fontWeight="500" opacity="0.7">Top</text>
+                                    <text x="43" y="52" textAnchor="middle" fill="white" fontSize="13" fontWeight="800">15%</text>
+                                </svg>
+
+                                {/* Legenda */}
+                                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '7px' }}>
+                                    {[
+                                        { label: 'Média do setor', value: '450g CO₂', bg: 'rgba(255,255,255,0.06)' },
+                                        { label: 'Sua emissão',    value: '280g CO₂', bg: 'rgba(114,188,161,0.12)' },
+                                        { label: 'Melhor prática', value: '180g CO₂', bg: 'rgba(255,255,255,0.04)' },
+                                    ].map(row => (
+                                        <div key={row.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: row.bg, borderRadius: '6px', padding: '5px 9px' }}>
+                                            <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: '11px' }}>{row.label}</span>
+                                            <span style={{ color: 'rgba(255,255,255,0.8)', fontSize: '11px', fontWeight: '600' }}>{row.value}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <p style={{ color: 'rgba(255,255,255,0.18)', fontSize: '10px', marginTop: '12px', marginBottom: 0, textAlign: 'center' }}>
+                                * Referência estática — benchmark em desenvolvimento
+                            </p>
+                        </div>
+
+                        {/* Placeholders para features futuras */}
+                        {['Histórico de emissões', 'Score de sustentabilidade', 'Relatório mensal'].map(label => (
+                            <div key={label} style={{ ...cardBase, minHeight: '72px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(255,255,255,0.06)' }}>
+                                <span style={{ color: 'rgba(255,255,255,0.15)', fontSize: '13px' }}>{label} — Em breve</span>
+                            </div>
+                        ))}
+
+                    </div>
+
                 </div>
-            </section>
-
-            <section style={{ padding: '60px 10%', maxWidth: '1200px', margin: '0 auto' }}>
-                <h2 style={{ color: 'white', fontSize: '28px', marginBottom: '30px' }}>Análise</h2>
-                
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '30px' }}>
-                    
-                    <div onClick={() => navigate('/metas')} style={{ backgroundColor: '#112a1f', padding: '30px', borderRadius: '15px', border: '1px solid #1d5c42', cursor: 'pointer', transition: 'transform 0.2s', boxShadow: '0 4px 15px rgba(114, 188, 161, 0.2)' }}>
-                        <div style={{ fontSize: '40px', marginBottom: '15px' }}>🎯</div>
-                        <h3 style={{ color: '#72bca1', margin: '0 0 10px 0' }}>Metas de Emissão</h3>
-                        <p style={{ color: 'rgba(255,255,255,0.7)', margin: 0, lineHeight: '1.5' }}>Defina seu limite mensal de carbono e acompanhe seu progresso em tempo real.</p>
-                    </div>
-
-                    <div onClick={() => navigate('/gamificacao')} style={{ backgroundColor: '#112a1f', padding: '30px', borderRadius: '15px', border: '1px solid #1d5c42', cursor: 'pointer', transition: 'transform 0.2s', boxShadow: '0 4px 15px rgba(114, 188, 161, 0.2)' }}>
-                        <div style={{ fontSize: '40px', marginBottom: '15px' }}>🏆</div>
-                        <h3 style={{ color: '#72bca1', margin: '0 0 10px 0' }}>Gamificação</h3>
-                        <p style={{ color: 'rgba(255,255,255,0.7)', margin: 0, lineHeight: '1.5' }}>Desbloqueie conquistas e figuras ambientais ao realizar escolhas ecológicas.</p>
-                    </div>
-
-                    <div style={{ backgroundColor: '#112a1f', padding: '30px', borderRadius: '15px', border: '1px solid #1d5c42', cursor: 'pointer', transition: 'transform 0.2s' }}>
-                        <div style={{ fontSize: '40px', marginBottom: '15px' }}>💰</div>
-                        <h3 style={{ color: '#72bca1', margin: '0 0 10px 0' }}>Cashback Sustentável</h3>
-                        <p style={{ color: 'rgba(255,255,255,0.7)', margin: 0, lineHeight: '1.5' }}>Converta a economia de CO2 das suas transações em saldo real na sua carteira.</p>
-                    </div>
-
-                    <div style={{ backgroundColor: '#112a1f', padding: '30px', borderRadius: '15px', border: '1px solid #1d5c42', cursor: 'pointer', transition: 'transform 0.2s' }}>
-                        <div style={{ fontSize: '40px', marginBottom: '15px' }}>🌳</div>
-                        <h3 style={{ color: '#72bca1', margin: '0 0 10px 0' }}>Árvores Salvas</h3>
-                        <p style={{ color: 'rgba(255,255,255,0.7)', margin: 0, lineHeight: '1.5' }}>Veja o impacto individual das suas ações convertido em árvores preservadas.</p>
-                    </div>
-
-                </div>
-            </section>
-
+            </div>
         </div>
     );
 }
