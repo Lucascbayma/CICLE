@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './App.css';
 import Aurora from './Aurora';
 import logoImg from './cicle.png';
+import SidebarMenu from './SidebarMenu';
 
 function Calculadora() {
     const navigate = useNavigate();
@@ -33,7 +34,8 @@ function Calculadora() {
     };
 
     return (
-        <div className="login-background" style={{ height: '100vh', width: '100vw', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="login-background" style={{ height: '100vh', width: '100vw', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingLeft: '60px', boxSizing: 'border-box' }}>
+            <SidebarMenu />
             <div className="aurora-wrapper">
                 <Aurora colorStops={["#72bca1","#1d5c42","#7ea488"]} blend={0.5} amplitude={1.0} speed={1} />
             </div>

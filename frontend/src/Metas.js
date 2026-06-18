@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logoImg from './cicle.png';
+import SidebarMenu from './SidebarMenu';
 
 const API = 'http://localhost:8080';
 const USER_ID = 1;
@@ -74,13 +75,13 @@ function Metas() {
     const barColor = alerta ? '#e75740' : percentual >= 60 ? '#f0a500' : '#72bca1';
 
     return (
-        <div style={{ backgroundColor: '#0a1912', minHeight: '100vh', fontFamily: 'sans-serif' }}>
+        <div style={{ backgroundColor: '#0a1912', minHeight: '100vh', fontFamily: 'sans-serif', paddingLeft: '60px', boxSizing: 'border-box' }}>
+            <SidebarMenu />
 
-            <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 40px', backgroundColor: 'rgba(0,0,0,0.5)', position: 'fixed', width: '100%', top: 0, zIndex: 100, boxSizing: 'border-box', backdropFilter: 'blur(10px)' }}>
+            <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 40px', backgroundColor: 'rgba(0,0,0,0.5)', position: 'fixed', left: '60px', right: 0, top: 0, zIndex: 100, boxSizing: 'border-box', backdropFilter: 'blur(10px)' }}>
                 <img src={logoImg} alt="Cicle Logo" style={{ height: '40px' }} />
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                     <button onClick={() => navigate('/usuario')} style={{ background: 'transparent', border: '1px solid #72bca1', color: '#72bca1', padding: '8px 20px', borderRadius: '20px', cursor: 'pointer', fontWeight: 'bold' }}>← Voltar</button>
-                    <button onClick={() => navigate('/')} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,0.3)', color: 'rgba(255,255,255,0.6)', padding: '8px 20px', borderRadius: '20px', cursor: 'pointer' }}>Sair</button>
                 </div>
             </header>
 

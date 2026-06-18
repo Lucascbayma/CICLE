@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
 import logoImg from './cicle.png';
+import SidebarMenu from './SidebarMenu';
 
 function Usuario() {
     const navigate = useNavigate();
@@ -58,13 +59,13 @@ function Usuario() {
     }, [slides.length]);
 
     return (
-        <div style={{ backgroundColor: '#0a1912', minHeight: '100vh', width: '100%', fontFamily: 'sans-serif' }}>
-            
-            <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 40px', backgroundColor: 'rgba(0,0,0,0.5)', position: 'fixed', width: '100%', top: 0, zIndex: 100, boxSizing: 'border-box', backdropFilter: 'blur(10px)' }}>
+        <div style={{ backgroundColor: '#0a1912', minHeight: '100vh', width: '100%', fontFamily: 'sans-serif', paddingLeft: '60px', boxSizing: 'border-box' }}>
+            <SidebarMenu />
+
+            <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 40px', backgroundColor: 'rgba(0,0,0,0.5)', position: 'fixed', left: '60px', right: 0, top: 0, zIndex: 100, boxSizing: 'border-box', backdropFilter: 'blur(10px)' }}>
                 <img src={logoImg} alt="Cicle Logo" style={{ height: '40px' }} />
                 <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                     <span style={{ color: 'white', fontWeight: 'bold' }}>Olá, Usuário</span>
-                    <button onClick={() => navigate('/')} style={{ background: 'transparent', border: '1px solid #72bca1', color: '#72bca1', padding: '8px 20px', borderRadius: '20px', cursor: 'pointer', fontWeight: 'bold' }}>Sair</button>
                 </div>
             </header>
 

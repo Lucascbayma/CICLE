@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
 import './App.css';
 import logoImg from './cicle.png';
+import SidebarMenu from './SidebarMenu';
 
 const geoUrl = "https://unpkg.com/world-atlas@2.0.2/countries-110m.json";
 
@@ -88,11 +89,11 @@ function Gamificacao() {
     };
 
     return (
-        <div style={{ backgroundColor: '#0a1912', height: '100vh', width: '100vw', display: 'flex', flexDirection: 'column' }}>
-            
+        <div style={{ backgroundColor: '#0a1912', height: '100vh', width: '100vw', display: 'flex', flexDirection: 'column', paddingLeft: '60px', boxSizing: 'border-box' }}>
+            <SidebarMenu />
+
             <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 40px', backgroundColor: 'rgba(0,0,0,0.5)' }}>
                 <img src={logoImg} alt="Cicle" style={{ height: '40px' }} />
-                <button onClick={() => navigate('/usuario')} style={{ background: 'transparent', border: '1px solid #72bca1', color: '#72bca1', padding: '8px 20px', borderRadius: '20px', cursor: 'pointer', fontWeight: 'bold' }}>Voltar</button>
             </header>
 
             <div style={{ padding: '20px 40px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
