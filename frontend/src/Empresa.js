@@ -6,6 +6,7 @@ import logoImg from './cicle.png';
 function Empresa() {
     const navigate = useNavigate();
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [showRanking, setShowRanking] = useState(false);
 
     const slides = [
         {
@@ -50,6 +51,16 @@ function Empresa() {
         }
     ];
 
+    const rankingData = [
+        { rank: 1, name: "Edenred", co2: 52400, isCurrent: true },
+        { rank: 2, name: "Accenture", co2: 45200, isCurrent: false },
+        { rank: 3, name: "IBM", co2: 42150, isCurrent: false },
+        { rank: 4, name: "Magazine Luiza", co2: 38500, isCurrent: false },
+        { rank: 5, name: "Grupo Mateus", co2: 31200, isCurrent: false }
+    ];
+
+    const maxCo2 = rankingData[0].co2;
+
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
@@ -63,7 +74,7 @@ function Empresa() {
             <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 40px', backgroundColor: 'rgba(0,0,0,0.5)', position: 'fixed', width: '100%', top: 0, zIndex: 100, boxSizing: 'border-box', backdropFilter: 'blur(10px)' }}>
                 <img src={logoImg} alt="Cicle Logo" style={{ height: '40px' }} />
                 <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                    <span style={{ color: 'white', fontWeight: 'bold' }}>Olá, Empresa</span>
+                    <span style={{ color: 'white', fontWeight: 'bold' }}>Olá, Edenred</span>
                     <button onClick={() => navigate('/')} style={{ background: 'transparent', border: '1px solid #72bca1', color: '#72bca1', padding: '8px 20px', borderRadius: '20px', cursor: 'pointer', fontWeight: 'bold' }}>Sair</button>
                 </div>
             </header>
@@ -112,7 +123,7 @@ function Empresa() {
                         <p style={{ color: 'rgba(255,255,255,0.7)', margin: 0, lineHeight: '1.5' }}>Simule as emissões de GEE da sua frota de cartões e compare o impacto das transações físicas e digitais.</p>
                     </div>
 
-                    <div style={{ backgroundColor: '#112a1f', padding: '30px', borderRadius: '15px', border: '1px solid #1d5c42', opacity: '0.8' }}>
+                    <div onClick={() => setShowRanking(true)} style={{ backgroundColor: '#112a1f', padding: '30px', borderRadius: '15px', border: '1px solid #72bca1', cursor: 'pointer', transition: 'transform 0.2s', boxShadow: '0 4px 15px rgba(114, 188, 161, 0.2)' }}>
                         <div style={{ fontSize: '40px', marginBottom: '15px' }}>🏅</div>
                         <h3 style={{ color: '#72bca1', margin: '0 0 10px 0' }}>Ranking de Sustentabilidade</h3>
                         <p style={{ color: 'rgba(255,255,255,0.7)', margin: 0, lineHeight: '1.5' }}>Compare a performance ESG da sua empresa com outras do mesmo setor em nossa rede.</p>
@@ -132,6 +143,33 @@ function Empresa() {
 
                 </div>
             </section>
+
+            {showRanking && (
+                <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', backgroundColor: 'rgba(0,0,0,0.85)', zIndex: 999, display: 'flex', justifyContent: 'center', alignItems: 'center', backdropFilter: 'blur(8px)' }}>
+                    <div style={{ backgroundColor: '#0a1912', width: '90%', maxWidth: '650px', borderRadius: '20px', border: '1px solid #72bca1', padding: '40px', position: 'relative', boxShadow: '0 10px 40px rgba(0,0,0,0.8)' }}>
+                        <button onClick={() => setShowRanking(false)} style={{ position: 'absolute', top: '20px', right: '25px', background: 'transparent', border: 'none', color: '#ff6b6b', fontSize: '28px', cursor: 'pointer', fontWeight: 'bold' }}>✕</button>
+                        
+                        <h2 style={{ color: 'white', marginTop: 0, marginBottom: '5px', fontSize: '32px', textAlign: 'center' }}>🏆 Ranking Mensal</h2>
+                        <p style={{ color: 'rgba(255,255,255,0.7)', textAlign: 'center', marginBottom: '35px', fontSize: '16px' }}>As empresas que mais pouparam carbono em nossa rede.</p>
+                        
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                            {rankingData.map((item) => (
+                                <div key={item.rank} style={{ backgroundColor: item.isCurrent ? 'rgba(114, 188, 161, 0.15)' : 'rgba(255,255,255,0.03)', border: item.isCurrent ? '1px solid #72bca1' : '1px solid rgba(255,255,255,0.08)', borderRadius: '12px', padding: '18px 25px', position: 'relative', overflow: 'hidden' }}>
+                                    <div style={{ position: 'absolute', top: 0, left: 0, height: '100%', width: `${(item.co2 / maxCo2) * 100}%`, backgroundColor: item.isCurrent ? 'rgba(114, 188, 161, 0.2)' : 'rgba(255,255,255,0.04)', zIndex: 1 }} />
+                                    
+                                    <div style={{ position: 'relative', zIndex: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                                            <span style={{ color: item.rank === 1 ? '#f1c40f' : (item.rank === 2 ? '#bdc3c7' : (item.rank === 3 ? '#cd7f32' : '#72bca1')), fontSize: '24px', fontWeight: 'bold', width: '40px' }}>#{item.rank}</span>
+                                            <span style={{ color: 'white', fontSize: '18px', fontWeight: item.isCurrent ? 'bold' : 'normal' }}>{item.name} {item.isCurrent && <span style={{ color: '#72bca1', fontSize: '14px', marginLeft: '5px' }}>(Você)</span>}</span>
+                                        </div>
+                                        <span style={{ color: '#72bca1', fontWeight: 'bold', fontSize: '18px' }}>{item.co2.toLocaleString('pt-BR')} <span style={{ fontSize: '14px', fontWeight: 'normal', color: 'rgba(255,255,255,0.7)' }}>kg CO₂</span></span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            )}
 
         </div>
     );
