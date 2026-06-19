@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e40e6492-38d2-47bc-977c-85e5e67afa5e" name="Changes" comment="Implementado Cashback Verde e dados de redução de carbono do usuário com base no histórico.">
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/ligas/bronze.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/ligas/carbono.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/ligas/ferro.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/ligas/ouro.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cicle_db.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/cicle_db.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Gamificacao.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Gamificacao.js" afterDir="false" />
+    <list default="true" id="e40e6492-38d2-47bc-977c-85e5e67afa5e" name="Changes" comment="Ajustando gamificação da liga do usuário.">
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/edenred.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Usuario.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +62,7 @@
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/lucasbayma/IntelliJ/frontend/src/assets/ligas",
+    "last_opened_file_path": "/Users/lucasbayma/IntelliJ/frontend/src/assets",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -82,6 +78,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/assets" />
       <recent name="$PROJECT_DIR$/frontend/src/assets/ligas" />
       <recent name="$PROJECT_DIR$/frontend/src" />
     </key>
@@ -201,7 +198,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781843129334</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Ajustando gamificação da liga do usuário.">
+      <option name="closed" value="true" />
+      <created>1781846796852</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1781846796852</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,6 +229,7 @@
     <MESSAGE value="Ajustada e adicionada aba de metas" />
     <MESSAGE value="Backend da Calculadora Ambiental linkada com Banco de dados real." />
     <MESSAGE value="Implementado Cashback Verde e dados de redução de carbono do usuário com base no histórico." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementado Cashback Verde e dados de redução de carbono do usuário com base no histórico." />
+    <MESSAGE value="Ajustando gamificação da liga do usuário." />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajustando gamificação da liga do usuário." />
   </component>
 </project>

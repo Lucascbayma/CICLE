@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { UserCircle } from 'lucide-react';
 import './App.css';
 import logoImg from './cicle.png';
+import edenredImg from './assets/edenred.png';
 import SidebarMenu from './SidebarMenu';
 import carbonoImg from './assets/ligas/carbono.png';
 import bronzeImg from './assets/ligas/bronze.png';
@@ -175,7 +176,35 @@ function Usuario() {
                 boxSizing: 'border-box',
                 backdropFilter: 'blur(10px)',
             }}>
-                <img src={logoImg} alt="Cicle Logo" style={{ height: '36px' }} />
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px'
+                    }}>
+                    <img
+                        src={logoImg}
+                        alt="Cicle Logo"
+                        style={{ height: '36px', objectFit: 'contain' }}
+                    />
+
+                    <span style={{
+                        color: 'rgba(255,255,255,0.35)',
+                        fontSize: '20px',
+                        fontWeight: '300',
+                        lineHeight: 1
+                    }}>
+                        |
+                    </span>
+
+                    <img
+                        src={edenredImg}
+                        alt="Edenred Logo"
+                        style={{
+                            height: '24px',
+                            objectFit: 'contain'
+                        }}
+                    />
+                </div>
 
                 <div style={{
                     display: 'flex',

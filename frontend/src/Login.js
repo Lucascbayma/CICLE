@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './App.css';
 import Aurora from './Aurora';
 import logoImg from './cicle.png';
+import edenredImg from './assets/edenred.png';
 
 // LOGIN E SENHA ACEITAVEIS
 const CREDENCIAIS = {
@@ -57,7 +58,44 @@ function Login() {
             <div className="glass-container">
                 <div className="login-card">
                     <div className="login-left">
-                        <img src={logoImg} alt="Logo Cicle" className="logo"/>
+                        <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '14px',
+                            marginBottom: '20px'
+                            }}>
+                            <img
+                                src={logoImg}
+                                alt="Logo Cicle"
+                                className="logo"
+                                style={{
+                                    width: '120px',
+                                    height: 'auto',
+                                    objectFit: 'contain'
+                                }}
+                            />
+
+                            <span style={{
+                                color: 'rgba(255,255,255,0.45)',
+                                fontSize: '24px',
+                                fontWeight: '300'
+                            }}>
+                                |
+                            </span>
+
+                            <img
+                                src={edenredImg}
+                                alt="Logo Edenred"
+                                style={{
+                                    width: '135px',
+                                    height: 'auto',
+                                    objectFit: 'contain',
+                                    borderRadius: '8px',
+                                    padding: '6px 10px'
+                                }}
+                            />
+                        </div>
                         <div className="left-content">
                             <h2 className="left-title">Acompanhe sua jornada<br />de Co2 conosco!</h2>
                             <p className="left-subtitle">Acesse seus dados em tempo real</p>
