@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e40e6492-38d2-47bc-977c-85e5e67afa5e" name="Changes" comment="Backend da Calculadora Ambiental linkada com Banco de dados real.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="e40e6492-38d2-47bc-977c-85e5e67afa5e" name="Changes" comment="Implementado Cashback Verde e dados de redução de carbono do usuário com base no histórico.">
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/ligas/bronze.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/ligas/carbono.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/ligas/ferro.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/ligas/ouro.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/cicle_db.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/cicle_db.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Historico.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Historico.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Gamificacao.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Gamificacao.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Usuario.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,34 +54,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.CicleApplication.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.CicleApplication.executor&quot;: &quot;Run&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/lucasbayma/IntelliJ/frontend/src&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/arthu/IdeaProjects/CICLE/Config/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.CicleApplication.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.CicleApplication.executor": "Run",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/lucasbayma/IntelliJ/frontend/src/assets/ligas",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/arthu/IdeaProjects/CICLE/Config/src/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "MavenSettings",
+    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/assets/ligas" />
       <recent name="$PROJECT_DIR$/frontend/src" />
     </key>
   </component>
@@ -189,7 +193,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781841637557</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Implementado Cashback Verde e dados de redução de carbono do usuário com base no histórico.">
+      <option name="closed" value="true" />
+      <created>1781843129334</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1781843129334</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,6 +223,7 @@
     <MESSAGE value="Ajustado dependências do projeto no arquivo .xml e ajustada calculadora do usuário." />
     <MESSAGE value="Ajustada e adicionada aba de metas" />
     <MESSAGE value="Backend da Calculadora Ambiental linkada com Banco de dados real." />
-    <option name="LAST_COMMIT_MESSAGE" value="Backend da Calculadora Ambiental linkada com Banco de dados real." />
+    <MESSAGE value="Implementado Cashback Verde e dados de redução de carbono do usuário com base no histórico." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementado Cashback Verde e dados de redução de carbono do usuário com base no histórico." />
   </component>
 </project>

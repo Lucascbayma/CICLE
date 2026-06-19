@@ -119,6 +119,14 @@ function Gamificacao() {
                 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                        <p style={{
+                            color: 'rgba(255,255,255,0.6)',
+                            fontSize: '12px',
+                            margin: '0 0 4px 0',
+                            textAlign: 'center'
+                        }}>
+                            Modo demonstração
+                        </p>
                         <button onClick={adicionarCarbono} style={{ backgroundColor: '#f39c12', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', fontSize: '12px' }}>+ 100kg CO2</button>
                         <button onClick={resetarTudo} style={{ backgroundColor: '#e74c3c', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', fontSize: '12px' }}>Resetar Mapa</button>
                     </div>
