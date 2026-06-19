@@ -11,10 +11,7 @@ function Gamificacao() {
     const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1.15 });
     const [paisSelecionado, setPaisSelecionado] = useState(null);
     const [continenteAtivo, setContinenteAtivo] = useState(false);
-
-    useEffect(() => {
-        fetchStatus();
-    }, []);
+    const [progressoReal, setProgressoReal] = useState(null);
 
     const fetchStatus = async () => {
         try {
@@ -25,6 +22,26 @@ function Gamificacao() {
             console.error(error);
         }
     };
+
+    const fetchProgressoReal = async () => {
+        try {
+            const response = await fetch('http://localhost:8080/api/gamificacao/usuario/1/progresso');
+
+            if (!response.ok) {
+                throw new Error('Erro ao buscar progresso real');
+            }
+
+            const data = await response.json();
+            setProgressoReal(data);
+        } catch (error) {
+            console.error('Erro ao carregar progresso real:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchStatus();
+        fetchProgressoReal();
+    }, []);
 
     const adicionarCarbono = async () => {
         try {

@@ -14,6 +14,13 @@ public class GamificacaoController {
     private List<String> paisesSalvos = new ArrayList<>();
     private final int CUSTO_PAIS = 250;
 
+    @Autowired
+    private GamificacaoService gamificacaoService;
+    @GetMapping("/usuario/{id}/progresso")
+    public Progresso buscarProgressoUsuario(@PathVariable Long id) {
+        return gamificacaoService.buscarProgresso(id);
+    }
+
     @GetMapping("/status")
     public GamificacaoDTO getStatus() {
         int totalPossivel = (int) (carbonoSimulado / CUSTO_PAIS);
