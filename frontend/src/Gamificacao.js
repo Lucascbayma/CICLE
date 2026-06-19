@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
 import './App.css';
 import logoImg from './cicle.png';
@@ -8,7 +7,6 @@ import SidebarMenu from './SidebarMenu';
 const geoUrl = "https://unpkg.com/world-atlas@2.0.2/countries-110m.json";
 
 function Gamificacao() {
-    const navigate = useNavigate();
     const [status, setStatus] = useState({ carbonoAcumulado: 0, paisesDisponiveis: 0, carbonoProximoPais: 250, paisesSalvos: [] });
     const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1.15 });
     const [paisSelecionado, setPaisSelecionado] = useState(null);
