@@ -4,22 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e40e6492-38d2-47bc-977c-85e5e67afa5e" name="Changes" comment="Ajustado dependências do projeto no arquivo .xml e ajustada calculadora do usuário.">
+    <list default="true" id="e40e6492-38d2-47bc-977c-85e5e67afa5e" name="Changes" comment="Ajustada e adicionada aba de metas">
+      <change afterPath="$PROJECT_DIR$/cicle/src/main/java/com/projetos3/cicle/controller/CalculoAmbientalController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cicle/src/main/java/com/projetos3/cicle/dto/CalculoAmbientalDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cicle/src/main/java/com/projetos3/cicle/model/CalculoAmbiental.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cicle/src/main/java/com/projetos3/cicle/repository/CalculoAmbientalRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cicle/src/main/java/com/projetos3/cicle/service/CalculoAmbientalService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cicle/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cicle/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cicle/src/main/java/com/projetos3/cicle/controller/GamificacaoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cicle/src/main/java/com/projetos3/cicle/controller/GamificacaoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cicle/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cicle/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cicle_db.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/cicle_db.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/CalculadoraAmbiental.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/CalculadoraAmbiental.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Gamificacao.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Gamificacao.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/SidebarMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/SidebarMenu.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Lucascbayma &lt;lucasbayma31@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -74,7 +87,7 @@
       <recent name="$PROJECT_DIR$/frontend/src" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.CicleApplication">
     <configuration name="CicleApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.projetos3.cicle.CicleApplication" />
       <module name="cicle" />
@@ -88,8 +101,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CicleApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="cicle" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.projetos3.cicle.CicleApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.projetos3.cicle.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.CicleApplication" />
         <item itemvalue="Application.CicleApplication" />
       </list>
     </recent_temporary>
@@ -118,14 +146,67 @@
       <option name="project" value="LOCAL" />
       <updated>1781833202809</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Ajustada e adicionada aba de metas">
+      <option name="closed" value="true" />
+      <created>1781839801142</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1781839801142</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Ajustada gamificação do mapa">
+      <option name="closed" value="true" />
+      <created>1781839824364</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1781839824364</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Ajustado dependências do projeto no arquivo .xml e ajustada calculadora do usuário.">
+      <option name="closed" value="true" />
+      <created>1781839950308</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1781839950308</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Ajustado dependências do projeto no arquivo .xml e ajustada calculadora do usuário.">
+      <option name="closed" value="true" />
+      <created>1781840028053</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1781840028053</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Ajustada e adicionada aba de metas">
+      <option name="closed" value="true" />
+      <created>1781840075056</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1781840075056</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Ajustada gamificação do mapa" />
     <MESSAGE value="Ajustado dependências do projeto no arquivo .xml e ajustada calculadora do usuário." />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajustado dependências do projeto no arquivo .xml e ajustada calculadora do usuário." />
+    <MESSAGE value="Ajustada e adicionada aba de metas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajustada e adicionada aba de metas" />
   </component>
 </project>

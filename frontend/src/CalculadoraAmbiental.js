@@ -158,33 +158,50 @@ function CalculadoraAmbiental() {
 
     const salvarCalculo = async () => {
         try {
-            const tipoTransporte = transporte.publicTransport
-                ? 'transporte_publico'
-                : 'carro';
-
-            const response = await fetch('http://localhost:8080/api/transacoes', {
+            const response = await fetch('http://localhost:8080/api/calculos', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                     usuarioId: 1,
-                    tipo: tipoTransporte,
-                    distanciaKm: Number(transporte.km),
+
+                    transporteKm: Number(transporte.km),
+                    usaTransportePublico: transporte.publicTransport,
+                    tipoVeiculo: transporte.vehicleType,
+
+                    energiaKwh: Number(energia.kwh),
+                    usaEnergiaSolar: energia.solar,
+                    fonteEnergia: energia.fonte,
+
+                    diasCarne: Number(alimentacao.diasCarne),
+                    alimentacaoPlantBased: alimentacao.plantBased,
+                    dieta: alimentacao.dieta,
+
+                    voosAno: Number(viagens.voosAno),
+                    viagemLongaDistancia: viagens.longaDistancia,
+                    tipoViagem: viagens.tipo,
+
+                    itensConsumo: Number(consumo.itens),
+                    consumoSustentavel: consumo.sustentavel,
+                    perfilConsumo: consumo.perfil,
+
+                    emissaoTotal: Number(emissaoTotal),
+                    cashback: Number(cashback),
                 }),
             });
 
             if (!response.ok) {
                 const erro = await response.text();
-                throw new Error(erro || 'Erro ao salvar cálculo');
+                throw new Error(erro || 'Erro ao salvar cálculo ambiental');
             }
 
             const dados = await response.json();
-            console.log('Cálculo salvo no backend:', dados);
+            console.log('Cálculo ambiental salvo:', dados);
 
             setSalvoStatus('salvo');
         } catch (error) {
-            console.error('Erro ao salvar cálculo:', error);
+            console.error('Erro ao salvar cálculo ambiental:', error);
             setSalvoStatus('erro');
         } finally {
             setTimeout(() => setSalvoStatus('idle'), 3000);

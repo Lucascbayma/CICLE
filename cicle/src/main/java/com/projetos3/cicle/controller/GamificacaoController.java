@@ -4,6 +4,9 @@ import com.projetos3.cicle.dto.GamificacaoDTO;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
+import com.projetos3.cicle.model.Progresso;
+import com.projetos3.cicle.service.GamificacaoService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
 @RequestMapping("/api/gamificacao")
