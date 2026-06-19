@@ -15,7 +15,7 @@ function Gamificacao() {
 
     const fetchStatus = async () => {
         try {
-            const response = await fetch('http://localhost:8080/api/gamificacao/status');
+            const response = await fetch('/api/gamificacao/status');
             const data = await response.json();
             setStatus(data);
         } catch (error) {
@@ -25,7 +25,7 @@ function Gamificacao() {
 
     const fetchProgressoReal = async () => {
         try {
-            const response = await fetch('http://localhost:8080/api/gamificacao/usuario/1/progresso');
+            const response = await fetch('/api/gamificacao/usuario/1/progresso');
 
             if (!response.ok) {
                 throw new Error('Erro ao buscar progresso real');
@@ -45,7 +45,7 @@ function Gamificacao() {
 
     const adicionarCarbono = async () => {
         try {
-            const response = await fetch('http://localhost:8080/api/gamificacao/adicionar', {
+            const response = await fetch('/api/gamificacao/adicionar', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             });
@@ -58,7 +58,7 @@ function Gamificacao() {
 
     const resetarTudo = async () => {
         try {
-            const response = await fetch('http://localhost:8080/api/gamificacao/resetar', {
+            const response = await fetch('/api/gamificacao/resetar', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             });
@@ -90,7 +90,7 @@ function Gamificacao() {
     const confirmarSalvamento = async () => {
         if (!paisSelecionado) return;
         try {
-            const response = await fetch('http://localhost:8080/api/gamificacao/salvar', {
+            const response = await fetch('/api/gamificacao/salvar', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(paisSelecionado.properties.name)

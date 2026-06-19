@@ -9,7 +9,7 @@ import bronzeImg from './assets/ligas/bronze.png';
 import ferroImg from './assets/ligas/ferro.png';
 import ouroImg from './assets/ligas/ouro.png';
 
-const API     = 'http://localhost:8080';
+const API     = '';
 const USER_ID = 1;
 
 function Usuario() {

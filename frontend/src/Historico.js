@@ -15,7 +15,7 @@ function Historico() {
         try {
             setCarregando(true);
 
-            const response = await fetch('http://localhost:8080/api/calculos/usuario/1');
+            const response = await fetch('/api/calculos/usuario/1');
 
             if (!response.ok) {
                 throw new Error('Erro ao buscar histórico');

@@ -158,7 +158,7 @@ function CalculadoraAmbiental() {
 
     const salvarCalculo = async () => {
         try {
-            const response = await fetch('http://localhost:8080/api/calculos', {
+            const response = await fetch('/api/calculos', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

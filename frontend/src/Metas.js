@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import logoImg from './cicle.png';
 import SidebarMenu from './SidebarMenu';
 
-const API = 'http://localhost:8080';
+const API = '';
 const USER_ID = 1;
 
 function Metas() {
