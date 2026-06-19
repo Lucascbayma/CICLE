@@ -10,18 +10,60 @@ const USER_ID = 1;
 function Usuario() {
     const [progresso, setProgresso] = useState(null);
     const [loading,   setLoading]   = useState(true);
+    const [resumo, setResumo] = useState(null);
+    const [calculos, setCalculos] = useState([]);
 
     useEffect(() => {
-        fetch(`${API}/api/metas/usuario/${USER_ID}/progresso`)
-            .then(r => r.ok ? r.json() : null)
-            .then(data => { if (data) setProgresso(data); })
-            .catch(() => {})
-            .finally(() => setLoading(false));
+        const carregarDados = async () => {
+            try {
+                setLoading(true);
+
+                const [respostaMeta, respostaResumo, respostaCalculos] = await Promise.all([
+                    fetch(`${API}/api/metas/usuario/${USER_ID}/progresso`),
+                    fetch(`${API}/api/calculos/usuario/${USER_ID}/resumo`),
+                    fetch(`${API}/api/calculos/usuario/${USER_ID}`)
+                ]);
+
+                if (respostaMeta.ok) {
+                    const dadosMeta = await respostaMeta.json();
+                    setProgresso(dadosMeta);
+                }
+
+                if (respostaResumo.ok) {
+                    const dadosResumo = await respostaResumo.json();
+                    setResumo(dadosResumo);
+                }
+
+                if (respostaCalculos.ok) {
+                    const dadosCalculos = await respostaCalculos.json();
+                    setCalculos(dadosCalculos);
+                }
+            } catch (error) {
+                console.error('Erro ao carregar dados do usuário:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        carregarDados();
     }, []);
 
-    const emitido    = progresso?.emitido ?? 0;
-    const limite     = progresso?.limite  ?? 0;
-    const co2Evitado = Math.max(0, limite - emitido);
+    const emitido = progresso?.emitido ?? resumo?.emissaoTotal ?? 0;
+    const limite = progresso?.limite ?? 0;
+
+    const totalCalculos = resumo?.totalCalculos ?? calculos.length ?? 0;
+    const cashbackTotal = resumo?.cashbackTotal ?? 0;
+
+    const co2Evitado = Math.max(0, (totalCalculos * 400) - emitido);
+
+    const percentualMeta = limite > 0 ? Math.min(100, (emitido / limite) * 100) : 0;
+
+    const calculosSustentaveis = calculos.filter(c => (c.emissaoTotal || 0) < 200).length;
+    const percentualSustentavel = totalCalculos > 0
+        ? Math.round((calculosSustentaveis / totalCalculos) * 100)
+        : 0;
+
+    const calculosAltaEmissao = Math.max(0, totalCalculos - calculosSustentaveis);
 
     // SVG donut (benchmark estático)
     const R    = 32;
@@ -82,7 +124,7 @@ function Usuario() {
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
                                     <div>
                                         <p style={{ color: '#72bca1', fontSize: '30px', fontWeight: '800', margin: 0, lineHeight: 1 }}>
-                                            {loading ? '—' : `${co2Evitado.toFixed(0)}g`}
+                                            {loading ? '—' : `${co2Evitado.toFixed(1)} kg`}
                                         </p>
                                         <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '13px', margin: '4px 0 0' }}>
                                             CO2 evitado no período
@@ -94,7 +136,7 @@ function Usuario() {
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
                                 <div>
                                     <p style={{ color: 'white', fontSize: '30px', fontWeight: '800', margin: 0, lineHeight: 1 }}>
-                                        {loading ? '—' : `${emitido.toFixed(0)}g`}
+                                        {loading ? '—' : `${emitido.toFixed(1)} kg`}
                                     </p>
                                     <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '13px', margin: '4px 0 0' }}>
                                         Emissão Total de CO2
@@ -112,36 +154,36 @@ function Usuario() {
                         {/* Digital vs Físico */}
                         <div style={cardBase}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
-                                <h3 style={{ color: '#72bca1', margin: 0, fontSize: '15px', fontWeight: '700' }}>Digital vs Físico</h3>
+                                <h3 style={{ color: '#72bca1', margin: 0, fontSize: '15px', fontWeight: '700' }}>Perfil dos Cálculos</h3>
                                 <span style={{ color: 'rgba(255,255,255,0.35)', fontSize: '12px' }}>Este mês ↓</span>
                             </div>
                             <p style={{ color: 'rgba(255,255,255,0.28)', fontSize: '12px', margin: '0 0 16px' }}>
-                                Das 6780 transações feitas
+                                {totalCalculos} cálculo(s) ambiental(is) registrados
                             </p>
 
                             {/* Barra digital */}
                             <div style={{ marginBottom: '12px' }}>
-                                <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '11px', margin: '0 0 5px' }}>5763 foram digitais</p>
+                                <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '11px', margin: '0 0 5px' }}>{calculosSustentaveis} cálculo(s) abaixo de 200 kg CO₂</p>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                                     <div style={{ flex: 1, backgroundColor: 'rgba(255,255,255,0.07)', borderRadius: '4px', height: '26px', overflow: 'hidden' }}>
-                                        <div style={{ width: '87%', height: '100%', backgroundColor: '#8ab493', borderRadius: '4px', display: 'flex', alignItems: 'center', paddingLeft: '10px' }}>
+                                        <div style={{ width: `${percentualSustentavel}%`, height: '100%', backgroundColor: '#8ab493', borderRadius: '4px', display: 'flex', alignItems: 'center', paddingLeft: '10px' }}>
                                             <span style={{ color: 'white', fontWeight: '700', fontSize: '13px' }}>87%</span>
                                         </div>
                                     </div>
-                                    <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: '12px', whiteSpace: 'nowrap' }}>Uso Digital</span>
+                                    <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: '12px', whiteSpace: 'nowrap' }}>Perfil Sustentável</span>
                                 </div>
                             </div>
 
                             {/* Barra físico */}
                             <div>
-                                <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '11px', margin: '0 0 5px' }}>1017 foram físicas</p>
+                                <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '11px', margin: '0 0 5px' }}>{calculosAltaEmissao} cálculo(s) acima de 200 kg CO₂</p>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                                     <div style={{ flex: 1, backgroundColor: 'rgba(255,255,255,0.07)', borderRadius: '4px', height: '26px', overflow: 'hidden' }}>
-                                        <div style={{ width: '13%', height: '100%', backgroundColor: '#e75740', borderRadius: '4px', display: 'flex', alignItems: 'center', paddingLeft: '6px' }}>
+                                        <div style={{ width: `${100 - percentualSustentavel}%`, height: '100%', backgroundColor: '#e75740', borderRadius: '4px', display: 'flex', alignItems: 'center', paddingLeft: '6px' }}>
                                             <span style={{ color: 'white', fontWeight: '700', fontSize: '13px' }}>13%</span>
                                         </div>
                                     </div>
-                                    <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: '12px', whiteSpace: 'nowrap' }}>Uso Físico</span>
+                                    <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: '12px', whiteSpace: 'nowrap' }}>Alta Emissão</span>
                                 </div>
                             </div>
                         </div>
@@ -153,10 +195,12 @@ function Usuario() {
                             </h3>
                             <div style={{ backgroundColor: 'rgba(114,188,161,0.08)', border: '1px solid rgba(114,188,161,0.2)', borderRadius: '10px', padding: '14px 16px', marginBottom: '12px' }}>
                                 <p style={{ color: 'rgba(255,255,255,0.35)', fontSize: '11px', margin: '0 0 4px' }}>Saldo Disponível</p>
-                                <p style={{ color: 'white', fontSize: '22px', fontWeight: '800', margin: 0 }}>Em breve</p>
+                                <p style={{ color: 'white', fontSize: '22px', fontWeight: '800', margin: 0 }}>
+                                    R$ {cashbackTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                </p>
                             </div>
                             <p style={{ color: 'rgba(255,255,255,0.2)', fontSize: '11px', margin: 0 }}>
-                                Backend de cashback em desenvolvimento.
+                                Valor acumulado a partir dos cálculos ambientais salvos.
                             </p>
                         </div>
 
@@ -187,9 +231,9 @@ function Usuario() {
                                 {/* Legenda */}
                                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '7px' }}>
                                     {[
-                                        { label: 'Média do setor', value: '450g CO₂', bg: 'rgba(255,255,255,0.06)' },
-                                        { label: 'Sua emissão',    value: '280g CO₂', bg: 'rgba(114,188,161,0.12)' },
-                                        { label: 'Melhor prática', value: '180g CO₂', bg: 'rgba(255,255,255,0.04)' },
+                                        { label: 'Referência mensal', value: `${limite || 120} kg CO₂`, bg: 'rgba(255,255,255,0.06)' },
+                                        { label: 'Sua emissão', value: `${emitido.toFixed(1)} kg CO₂`, bg: 'rgba(114,188,161,0.12)' },
+                                        { label: 'Uso da meta', value: `${percentualMeta.toFixed(0)}%`, bg: 'rgba(255,255,255,0.04)' },
                                     ].map(row => (
                                         <div key={row.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: row.bg, borderRadius: '6px', padding: '5px 9px' }}>
                                             <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: '11px' }}>{row.label}</span>
@@ -200,14 +244,17 @@ function Usuario() {
                             </div>
 
                             <p style={{ color: 'rgba(255,255,255,0.18)', fontSize: '10px', marginTop: '12px', marginBottom: 0, textAlign: 'center' }}>
-                                * Referência estática — benchmark em desenvolvimento
+                                * Dados calculados com base na meta mensal e nos cálculos salvos.
                             </p>
                         </div>
 
-                        {/* Placeholders para features futuras */}
-                        {['Histórico de emissões', 'Score de sustentabilidade', 'Relatório mensal'].map(label => (
+                        {[
+                            `Cálculos registrados: ${totalCalculos}`,
+                            `Progresso da meta: ${percentualMeta.toFixed(0)}%`,
+                            `Cashback acumulado: R$ ${cashbackTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+                        ].map(label => (
                             <div key={label} style={{ ...cardBase, minHeight: '72px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(255,255,255,0.06)' }}>
-                                <span style={{ color: 'rgba(255,255,255,0.15)', fontSize: '13px' }}>{label} — Em breve</span>
+                                <span style={{ color: 'rgba(255,255,255,0.15)', fontSize: '13px' }}>{label}</span>
                             </div>
                         ))}
 

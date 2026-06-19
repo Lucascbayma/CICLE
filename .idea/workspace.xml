@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e40e6492-38d2-47bc-977c-85e5e67afa5e" name="Changes" comment="Ajustada e adicionada aba de metas">
-      <change afterPath="$PROJECT_DIR$/cicle/src/main/java/com/projetos3/cicle/controller/CalculoAmbientalController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cicle/src/main/java/com/projetos3/cicle/dto/CalculoAmbientalDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cicle/src/main/java/com/projetos3/cicle/model/CalculoAmbiental.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cicle/src/main/java/com/projetos3/cicle/repository/CalculoAmbientalRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cicle/src/main/java/com/projetos3/cicle/service/CalculoAmbientalService.java" afterDir="false" />
+    <list default="true" id="e40e6492-38d2-47bc-977c-85e5e67afa5e" name="Changes" comment="Backend da Calculadora Ambiental linkada com Banco de dados real.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cicle/src/main/java/com/projetos3/cicle/controller/GamificacaoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cicle/src/main/java/com/projetos3/cicle/controller/GamificacaoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/cicle_db.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/cicle_db.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/CalculadoraAmbiental.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/CalculadoraAmbiental.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Historico.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Historico.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Usuario.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,7 +181,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781840075056</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Backend da Calculadora Ambiental linkada com Banco de dados real.">
+      <option name="closed" value="true" />
+      <created>1781841637557</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1781841637557</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,6 +210,7 @@
     <MESSAGE value="Ajustada gamificação do mapa" />
     <MESSAGE value="Ajustado dependências do projeto no arquivo .xml e ajustada calculadora do usuário." />
     <MESSAGE value="Ajustada e adicionada aba de metas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajustada e adicionada aba de metas" />
+    <MESSAGE value="Backend da Calculadora Ambiental linkada com Banco de dados real." />
+    <option name="LAST_COMMIT_MESSAGE" value="Backend da Calculadora Ambiental linkada com Banco de dados real." />
   </component>
 </project>
