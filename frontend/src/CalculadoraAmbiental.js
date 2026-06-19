@@ -156,22 +156,35 @@ function CalculadoraAmbiental() {
     const emissaoTotal = Math.round((emT + emE + emA + emV + emC) * 10) / 10;
     const cashback     = Math.max(0, (400 - emissaoTotal) * 0.15).toFixed(2);
 
-    const salvarCalculo = () => {
+    const salvarCalculo = async () => {
         try {
-            const historico = JSON.parse(localStorage.getItem('cicle_calculos') || '[]');
-            historico.unshift({
-                data: new Date().toLocaleString('pt-BR'),
-                emissaoTotal,
-                cashback,
-                transporte,
-                energia,
-                alimentacao,
-                viagens,
-                consumo,
+            const tipoTransporte = transporte.publicTransport
+                ? 'transporte_publico'
+                : 'carro';
+
+            const response = await fetch('http://localhost:8080/api/transacoes', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    usuarioId: 1,
+                    tipo: tipoTransporte,
+                    distanciaKm: Number(transporte.km),
+                }),
             });
-            localStorage.setItem('cicle_calculos', JSON.stringify(historico.slice(0, 20)));
+
+            if (!response.ok) {
+                const erro = await response.text();
+                throw new Error(erro || 'Erro ao salvar cálculo');
+            }
+
+            const dados = await response.json();
+            console.log('Cálculo salvo no backend:', dados);
+
             setSalvoStatus('salvo');
-        } catch {
+        } catch (error) {
+            console.error('Erro ao salvar cálculo:', error);
             setSalvoStatus('erro');
         } finally {
             setTimeout(() => setSalvoStatus('idle'), 3000);

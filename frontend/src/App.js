@@ -8,6 +8,7 @@ import Empresa from './Empresa';
 import Gamificacao from './Gamificacao';
 import Floresta from './Floresta';
 import Historico from './Historico';
+import Metas from './Metas';
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/gamificacao" element={<Gamificacao />} />
                 <Route path="/floresta" element={<Floresta />} />
                 <Route path="/historico" element={<Historico />} />
+                <Route path="/metas" element={<Metas />} />
             </Routes>
         </Router>
     );

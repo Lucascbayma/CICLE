@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LineChart, Calculator, LayoutGrid, Settings, LogOut, Menu } from 'lucide-react';
+import { LineChart, Calculator, LayoutGrid, Settings, LogOut, Menu, Target } from 'lucide-react';
 import logoImg from './cicle.png';
 
 const SIDEBAR_BG = '#0d2218';
@@ -13,6 +13,7 @@ function SidebarMenu() {
     const navItems = [
         { Icon: LineChart,   label: 'Análise',     path: '/usuario' },
         { Icon: Calculator,  label: 'Calculadora', path: '/calculadora-ambiental' },
+        { Icon: Target,      label: 'Metas',       path: '/metas' },
         { Icon: LayoutGrid,  label: 'Gamificação', path: '/gamificacao' },
     ];
 
